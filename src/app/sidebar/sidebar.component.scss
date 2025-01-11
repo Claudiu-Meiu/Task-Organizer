@@ -1,72 +1,64 @@
 .sidebar-hidden {
+  color: whitesmoke;
+  font-size: 18px;
   background: none;
   border: none;
   margin-top: 1px;
-  padding-top: 3rem;
-  margin-bottom: 1rem;
-  min-height: 90%;
-  max-height: 90%;
+  padding-top: 2.5rem;
+  height: 100vh;
   width: 30px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: flex-start;
   &:hover {
     transition: ease 0.2s;
     cursor: pointer;
-    box-shadow: 0px 0px 0px 1px #ccc;
+    background-color: #222526;
+    color: #00eeff;
   }
 }
 .sidebar {
+  background-color: #111213;
   margin-top: 1px;
-  margin-bottom: 1rem;
   width: 20%;
-  box-shadow: 0px 0px 0px 1px #ccc;
-  min-height: 90%;
-  max-height: 90%;
-  overflow-y: auto;
+  height: 100vh;
+  box-shadow: 1px 0px 0px 0px #cccccc1f;
   header {
-    position: sticky;
-    background: white;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0px 0px 0px 1px #ccc;
-    padding: 0.5rem;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0px 0px 0px 0px #cccccc1f;
+    padding: 1rem;
     .sidebar-close-btn {
-      margin-left: 0.5rem;
-      margin-right: 2rem;
+      
+      color: whitesmoke;
+      font-size: 18px;
       border-radius: 5px;
-      padding: 0.5rem;
+      padding: 0px 10px;
+      margin-top: 10px;
+      margin-bottom: 10px;
       border: none;
       background: none;
       &:hover {
         transition: ease 0.2s;
         cursor: pointer;
         background-color: #ff000015;
-        box-shadow: 0px 0px 0px 1px #ff000038;
+        color: #ff0000b5;
+      }
+      .pi-angle-double-left {
+        padding-top: 5px;
       }
     }
+  }
+  .sidebar-content {
+    overflow-y: auto;
+    height: 70vh;
   }
   ul {
     padding-left: 0;
     list-style-type: none;
-  }
-  .sidebar-item {
-    padding: 1rem;
-    .sidebar-item-btn {
-      background-color: whitesmoke;
-      padding: 20px 40px;
-      text-align: left;
-      border: none;
-      width: 100%;
-      border-radius: 5px;
-      &:hover {
-        cursor: pointer;
-        transition: ease 0.2s;
-        background-color: #2f79ba19;
-        color: #003767;
-        box-shadow: 0px 0px 0px 1px #2f79ba6d;
-      }
+    .sidebar-item {
+      padding: 0.5rem;
     }
   }
 }

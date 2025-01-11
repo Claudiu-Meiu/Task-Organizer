@@ -1,27 +1,23 @@
 @if (!sidebarBtnClicked) {
   <button (click)="onSideBarBtnClick()" class="sidebar-hidden">
-    <i class="pi pi-chevron-right"></i>
+    <i class="pi pi-angle-double-right"></i>
   </button>
 } @else {
   <aside class="sidebar">
     <header>
-      <h3>
-        <button (click)="onSideBarBtnClick()" class="sidebar-close-btn">
-          <i class="pi pi-chevron-left"></i>
-        </button>
-        Your boards
-      </h3>
+      <h3>Your boards</h3>
+      <button (click)="onSideBarBtnClick()" class="sidebar-close-btn">
+        <i class="pi pi-angle-double-left"></i>
+      </button>
     </header>
-    <ul>
-      <li class="sidebar-item">
-        <button class="sidebar-item-btn">Awesome Project 1</button>
-      </li>
-      <li class="sidebar-item">
-        <button class="sidebar-item-btn">Awesome Project 2</button>
-      </li>
-      <li class="sidebar-item">
-        <button class="sidebar-item-btn">Awesome Project 3</button>
-      </li>
-    </ul>
+    <div class="sidebar-content">
+      <ul>
+        @for (index of boards; track index.id) {
+          <li class="sidebar-item">
+            <app-board-btn [boardBtn]="index" />
+          </li>
+        }
+      </ul>
+    </div>
   </aside>
 }

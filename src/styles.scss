@@ -1,16 +1,9 @@
 @import '../node_modules/primeicons/primeicons.css';
 
-* {
-  box-sizing: border-box;
-}
-
-html {
-  height: 100%;
-}
-
 body {
-  overflow: hidden;
   font-family: 'Poppins', sans-serif;
+  overflow: hidden;
   margin: auto;
-  height: 100%;
+  background-color: #161718;
+  color: whitesmoke;
 }
