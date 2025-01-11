@@ -1,0 +1,14 @@
+.sidebar-item-btn {
+  background-color: #f3f3f3;
+  padding: 12px 24px;
+  text-align: left;
+  border: none;
+  width: 100%;
+  border-radius: 5px;
+  &:hover {
+    cursor: pointer;
+    transition: ease 0.2s;
+    background-color: #245b8b5d;
+    color: #003767;
+  }
+}

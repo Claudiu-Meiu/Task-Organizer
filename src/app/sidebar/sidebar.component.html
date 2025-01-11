@@ -1,53 +1,23 @@
 @if (!sidebarBtnClicked) {
-<button (click)="onSideBarBtnClick()" class="sidebar-hidden">
-  <i class="pi pi-chevron-right"></i>
-</button>
+  <button (click)="onSideBarBtnClick()" class="sidebar-hidden">
+    <i class="pi pi-angle-double-right"></i>
+  </button>
 } @else {
-<aside class="sidebar">
-  <header>
-    <button (click)="onSideBarBtnClick()" class="sidebar-close-btn">
-      <i class="pi pi-angle-double-left"></i>
-    </button>
-    <h3>
-      Your boards
-    </h3>
-  </header>
-  <div class="sidebar-content">
-    <ul>
-      <li class="sidebar-item">
-        <button class="sidebar-item-btn">Awesome Project 1</button>
-      </li>
-      <li class="sidebar-item">
-        <button class="sidebar-item-btn">Awesome Project 2</button>
-      </li>
-      <li class="sidebar-item">
-        <button class="sidebar-item-btn">Awesome Project 3</button>
-      </li>
-      <li class="sidebar-item">
-        <button class="sidebar-item-btn">Awesome Project 4</button>
-      </li>
-      <li class="sidebar-item">
-        <button class="sidebar-item-btn">Awesome Project 5</button>
-      </li>
-      <li class="sidebar-item">
-        <button class="sidebar-item-btn">Awesome Project 6</button>
-      </li>
-      <li class="sidebar-item">
-        <button class="sidebar-item-btn">Awesome Project 7</button>
-      </li>
-      <li class="sidebar-item">
-        <button class="sidebar-item-btn">Awesome Project 8</button>
-      </li>
-      <li class="sidebar-item">
-        <button class="sidebar-item-btn">Awesome Project 9</button>
-      </li>
-      <li class="sidebar-item">
-        <button class="sidebar-item-btn">Awesome Project 10</button>
-      </li>
-    </ul>
-  </div>
-  <div class="sidebar-bottom">
-    © 2025 Claudiu Meiu, All rights reserved.
-  </div>
-</aside>
+  <aside class="sidebar">
+    <header>
+      <h3>Your boards</h3>
+      <button (click)="onSideBarBtnClick()" class="sidebar-close-btn">
+        <i class="pi pi-angle-double-left"></i>
+      </button>
+    </header>
+    <div class="sidebar-content">
+      <ul>
+        @for (index of boards; track index.id) {
+          <li class="sidebar-item">
+            <app-board-btn [boardBtn]="index" />
+          </li>
+        }
+      </ul>
+    </div>
+  </aside>
 }
