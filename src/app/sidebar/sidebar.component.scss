@@ -1,4 +1,5 @@
 .sidebar-hidden {
+  color: whitesmoke;
   font-size: 18px;
   background: none;
   border: none;
@@ -12,21 +13,25 @@
   &:hover {
     transition: ease 0.2s;
     cursor: pointer;
-    box-shadow: 0px 0px 0px 1px #ccc;
+    background-color: #222526;
+    color: #00eeff;
   }
 }
 .sidebar {
+  background-color: #111213;
   margin-top: 1px;
   width: 20%;
   height: 100vh;
-  box-shadow: 0px 0px 0px 1px #ccc;
+  box-shadow: 1px 0px 0px 0px #cccccc1f;
   header {
     position: relative;
     display: flex;
     justify-content: space-between;
-    box-shadow: 0px 0px 0px 1px #ccc;
+    box-shadow: 0px 0px 0px 0px #cccccc1f;
     padding: 1rem;
     .sidebar-close-btn {
+      
+      color: whitesmoke;
       font-size: 18px;
       border-radius: 5px;
       padding: 0px 10px;
