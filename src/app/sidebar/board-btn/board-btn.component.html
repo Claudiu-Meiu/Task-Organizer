@@ -1,1 +1,2 @@
-<button class="sidebar-item-btn">{{ boardBtn.boardName }}</button>
+<button class="sidebar-item-btn" [class.active]="isActive" (click)="onSelectBoard()">{{ boardBtn.boardName
+    }}</button>

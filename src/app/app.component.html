@@ -1,4 +1,5 @@
 <app-header />
 <main>
-  <app-sidebar />
+  <app-sidebar (selectedBoard)="board.onBoardSelected($event)"/>
+  <app-board #board></app-board>
 </main>

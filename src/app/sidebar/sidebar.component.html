@@ -1,23 +1,24 @@
-@if (!sidebarBtnClicked) {
-  <button (click)="onSideBarBtnClick()" class="sidebar-hidden">
-    <i class="pi pi-angle-double-right"></i>
-  </button>
+@if (!isSidebarBtnClicked) {
+<button (click)="onSideBarBtnClick()" class="sidebar-hidden">
+  <i class="pi pi-angle-double-right"></i>
+</button>
 } @else {
-  <aside class="sidebar">
-    <header>
-      <h3>Your boards</h3>
-      <button (click)="onSideBarBtnClick()" class="sidebar-close-btn">
-        <i class="pi pi-angle-double-left"></i>
-      </button>
-    </header>
-    <div class="sidebar-content">
-      <ul>
-        @for (index of boards; track index.id) {
-          <li class="sidebar-item">
-            <app-board-btn [boardBtn]="index" />
-          </li>
-        }
-      </ul>
-    </div>
-  </aside>
+<aside class="sidebar">
+  <header>
+    <h3>Your boards</h3>
+    <button (click)="onSideBarBtnClick()" class="sidebar-close-btn">
+      <i class="pi pi-angle-double-left"></i>
+    </button>
+  </header>
+  <div class="sidebar-content">
+    <ul>
+      @for (index of boards; track index.id) {
+      <li class="sidebar-item">
+        <app-board-btn [isActive]="activeBoardName === index.boardName" [boardBtn]="index"
+          (selectBoard)="onSelectedBoard($event)" />
+      </li>
+      }
+    </ul>
+  </div>
+</aside>
 }
