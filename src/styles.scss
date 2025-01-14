@@ -1,5 +1,13 @@
 @import '../node_modules/primeicons/primeicons.css';
 
+::-webkit-scrollbar {
+  width: 2px;
+}
+::-webkit-scrollbar-thumb {
+  background: #7b7b7b;
+  border-radius: 50px;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   overflow: hidden;
