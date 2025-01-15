@@ -1,7 +1,4 @@
-<button
-  class="sidebar-item-btn"
-  [class.active]="isActive"
-  (click)="onSelectBoard()"
->
+<button class="sidebar-item-btn" [class.active]="isActive" (click)="onSelectBoard()">
   {{ boardBtn.boardName }}
+  <button class="board-btn-action-btn"><i class="pi pi-ellipsis-h"></i></button>
 </button>

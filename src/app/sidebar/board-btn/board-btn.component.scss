@@ -1,7 +1,10 @@
 .sidebar-item-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: #222526;
   color: whitesmoke;
-  padding: 12px 24px;
+  padding: 10px 20px;
   text-align: left;
   border: none;
   width: 100%;
@@ -11,10 +14,31 @@
     transition: ease 0.2s;
     background-color: #245b8b5d;
     color: #00eeff;
-    box-shadow: 0px 0px 0px 1px #00eeff;
+    box-shadow: 0px 0px 0px 1px #00eeff92;
+    .pi-ellipsis-h {
+      color: #00eeff;
+    }
   }
   &.active {
     background-color: #245b8b5d;
     color: #00eeff;
+    .pi-ellipsis-h {
+      color: #00eeff;
+    }
+  }
+  .board-btn-action-btn {
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: whitesmoke;
+    background: none;
+    border: none;
+    .pi-ellipsis-h {
+      padding-top: 2px;
+    }
+    &:hover {
+      transition: ease 0.2s;
+      cursor: pointer;
+      background-color: #00eeff18;
+    }
   }
 }

@@ -18,7 +18,6 @@
   }
 }
 .sidebar {
-  position: absolute;
   float: left;
   background-color: #111213;
   width: 20%;
@@ -57,7 +56,23 @@
     position: relative;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 0.5rem;
+    .add-board-btn {
+      border-radius: 5px;
+      background: none;
+      border: none;
+      color: whitesmoke;
+      padding: 5px 10px;
+      .pi-plus {
+        padding-top: 3px;
+      }
+      &:hover {
+        cursor: pointer;
+        background-color: #245b8b5d;
+        color: #00eeff;
+      }
+    }
   }
   .sidebar-content {
     overflow-y: auto;
