@@ -68,6 +68,7 @@
         padding-top: 3px;
       }
       &:hover {
+        transition: ease 0.2s;
         cursor: pointer;
         background-color: #245b8b5d;
         color: #00eeff;

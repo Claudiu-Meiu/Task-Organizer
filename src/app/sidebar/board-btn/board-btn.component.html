@@ -1,4 +1,4 @@
-<button class="sidebar-item-btn" [class.active]="isActive" (click)="onSelectBoard()">
+<a class="sidebar-item-btn" [routerLink]="['/board', boardBtn.id, boardBtn.boardName]" routerLinkActive="active">
   {{ boardBtn.boardName }}
   <button class="board-btn-action-btn"><i class="pi pi-ellipsis-h"></i></button>
-</button>
+</a>

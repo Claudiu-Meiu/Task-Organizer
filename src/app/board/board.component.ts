@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-board',
@@ -8,9 +9,12 @@ import { Component, Input } from '@angular/core';
   styleUrl: './board.component.scss',
 })
 export class BoardComponent {
-  @Input() selectedBoardName!: string;
+  route: ActivatedRoute = inject(ActivatedRoute);
+  boardName!: string | null;
 
-  onBoardSelected(boardName: string) {
-    this.selectedBoardName = boardName;
+  ngOnInit() {
+    this.route.paramMap.subscribe((params) => {
+      this.boardName = params.get('boardName');
+    });
   }
 }

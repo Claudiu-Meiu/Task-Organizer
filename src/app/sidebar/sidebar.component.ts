@@ -1,8 +1,8 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { BoardBtnComponent } from './board-btn/board-btn.component';
-import { BoardsArray } from '../boards-array';
-import { type Boards } from '../boards.model';
+import { BoardsArray } from '../_shared/boards-array';
+import { type Boards } from '../_shared/boards.model';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,17 +12,11 @@ import { type Boards } from '../boards.model';
   styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent {
-  @Output() selectedBoard = new EventEmitter<string>();
   isSidebarBtnClicked = false;
   boards: Boards[] = BoardsArray;
   activeBoardName!: string;
 
   onSideBarBtnClick() {
     this.isSidebarBtnClicked = !this.isSidebarBtnClicked;
-  }
-
-  onSelectedBoard(boardName: string) {
-    this.activeBoardName = boardName;
-    this.selectedBoard.emit(boardName);
   }
 }

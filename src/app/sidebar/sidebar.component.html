@@ -18,8 +18,7 @@
     <ul>
       @for (index of boards; track index.id) {
       <li class="sidebar-item">
-        <app-board-btn [isActive]="activeBoardName === index.boardName" [boardBtn]="index"
-          (selectBoard)="onSelectedBoard($event)" />
+        <app-board-btn [boardBtn]="index" />
       </li>
       }
     </ul>
