@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
-import { type BoardBtn } from './board-btn.model';
+import { type Board } from '../../_shared/board.model';
 
 @Component({
   selector: 'app-board-btn',
@@ -11,5 +11,5 @@ import { type BoardBtn } from './board-btn.model';
   styleUrl: './board-btn.component.scss',
 })
 export class BoardBtnComponent {
-  @Input({ required: true }) boardBtn!: BoardBtn;
+  @Input({ required: true }) boardBtn!: Board;
 }

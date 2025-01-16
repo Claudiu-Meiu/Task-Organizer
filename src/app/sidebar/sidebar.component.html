@@ -16,9 +16,9 @@
   </header>
   <div class="sidebar-content">
     <ul>
-      @for (index of boards; track index.id) {
+      @for (board of boards; track board.id) {
       <li class="sidebar-item">
-        <app-board-btn [boardBtn]="index" />
+        <app-board-btn [boardBtn]="board" />
       </li>
       }
     </ul>

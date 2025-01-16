@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { BoardBtnComponent } from './board-btn/board-btn.component';
 import { BoardsArray } from '../_shared/boards-array';
-import { type Boards } from '../_shared/boards.model';
+import { type Board } from '../_shared/board.model';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,7 +13,7 @@ import { type Boards } from '../_shared/boards.model';
 })
 export class SidebarComponent {
   isSidebarBtnClicked = false;
-  boards: Boards[] = BoardsArray;
+  boards: Board[] = BoardsArray;
   activeBoardName!: string;
 
   onSideBarBtnClick() {
