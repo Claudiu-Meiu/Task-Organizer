@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BoardsArray } from '../_shared/boards-array';
+
+import { BoardService } from '../_shared/board.service';
 
 @Component({
   selector: 'app-board',
@@ -11,19 +12,14 @@ import { BoardsArray } from '../_shared/boards-array';
 })
 export class BoardComponent implements OnInit {
   route: ActivatedRoute = inject(ActivatedRoute);
-  boardName!: string | null;
-
-  boards = BoardsArray;
+  private boardService = inject(BoardService);
+  boardName!: string;
 
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
       const boardId = Number(params.get('id'));
-      const selectedBoard = this.getBoardById(boardId);
-      this.boardName = selectedBoard.boardName || '';
+      const selectedBoard = this.boardService.getBoardById(boardId)[0];
+      this.boardName = selectedBoard.boardName;
     });
-  }
-
-  getBoardById(id: number) {
-    return this.boards.filter((board) => board.id === id)[0];
   }
 }

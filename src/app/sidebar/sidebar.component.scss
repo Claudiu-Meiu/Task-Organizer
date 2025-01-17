@@ -1,8 +1,9 @@
 .sidebar-hidden {
   float: left;
   color: whitesmoke;
+  background-color: #111213;
+  box-shadow: 1px 0px 0px 0px #cccccc1f;
   font-size: 18px;
-  background: none;
   border: none;
   padding-top: 2.5rem;
   height: 100vh;
@@ -13,8 +14,9 @@
   &:hover {
     transition: ease 0.2s;
     cursor: pointer;
-    background-color: #222526;
+    background-color: #245b8b5d;
     color: #00eeff;
+    box-shadow: 0px 0px 0px 1px #00eeff92;
   }
 }
 .sidebar {

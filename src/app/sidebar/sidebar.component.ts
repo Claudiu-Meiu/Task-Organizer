@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
+import { BoardService } from '../_shared/board.service';
 import { BoardBtnComponent } from './board-btn/board-btn.component';
-import { BoardsArray } from '../_shared/boards-array';
-import { type Board } from '../_shared/board.model';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,10 +12,19 @@ import { type Board } from '../_shared/board.model';
 })
 export class SidebarComponent {
   isSidebarBtnClicked = false;
-  boards: Board[] = BoardsArray;
-  activeBoardName!: string;
+  private boardService = inject(BoardService);
+  boards = this.boardService.boards;
+  board!: {};
 
   onSideBarBtnClick() {
     this.isSidebarBtnClicked = !this.isSidebarBtnClicked;
+  }
+
+  onAddBoardBtn() {
+    this.board = this.boardService.addBoard({
+      id: 4,
+      boardName: 'Firul Intors',
+      boardUrl: 'firul-intors',
+    });
   }
 }
