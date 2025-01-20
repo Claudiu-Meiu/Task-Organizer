@@ -12,7 +12,8 @@ import { BoardService } from '../_shared/board.service';
 })
 export class BoardComponent implements OnInit {
   route: ActivatedRoute = inject(ActivatedRoute);
-  private boardService = inject(BoardService);
+  boardService = inject(BoardService);
+
   boardName!: string;
 
   ngOnInit() {

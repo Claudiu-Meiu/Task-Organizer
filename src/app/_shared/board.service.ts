@@ -8,12 +8,27 @@ import { type Board } from '../_shared/board.model';
 })
 export class BoardService {
   boards: Board[] = BoardsArray;
+  existingIds!: any;
+  newId!: number;
+  newBoard!: Board;
 
   getBoardById(id: number) {
     return this.boards.filter((board) => board.id === id);
   }
 
-  addBoard(board: Board) {
-    return this.boards.push(board);
+  addBoard(boardName: string) {
+    this.existingIds = new Set(this.boards.map((board) => board.id));
+    console.log(this.existingIds);
+    
+    this.newId = 1;
+    while (this.existingIds.has(this.newId)) {
+      this.newId++;
+    }
+    this.newBoard = {
+      id: this.newId,
+      boardName: boardName,
+      boardUrl: boardName.toLowerCase().replace(/ /g, '-'),
+    };
+    this.boards.push(this.newBoard);
   }
 }

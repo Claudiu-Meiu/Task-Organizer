@@ -12,7 +12,21 @@
   </header>
   <header class="header-content">
     <h3>Your boards</h3>
-    <button class="add-board-btn"><i class="pi pi-plus"></i></button>
+    <button class="add-board-btn" [ngClass]="{'active' : isActive}" (click)="onAddBtnClick()"
+      (click)="toggleActive() "><i class="pi pi-plus"></i></button>
+    @if (isAddBtnClicked) {
+    <form class="add-board-form" #addBoard="ngForm" (ngSubmit)="onSubmit(addBoard)">
+      <div class="add-board-header">
+        <label for="boardNameInput">Board title</label>
+        <button class="close-add-board" (click)="onAddBtnClick()" (click)="toggleActive()"><i
+            class="pi pi-times"></i></button>
+      </div>
+      <input id="boardNameInput" [(ngModel)]="boardNameInput" name="boardNameInput" type="text" required />
+      <div class="submit-wrapper">
+        <button type="submit" (click)="onAddBoard()">Create</button>
+      </div>
+    </form>
+    }
   </header>
   <div class="sidebar-content">
     <ul>

@@ -1,4 +1,6 @@
 import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { NgForm, FormsModule } from '@angular/forms';
 
 import { BoardService } from '../_shared/board.service';
 import { BoardBtnComponent } from './board-btn/board-btn.component';
@@ -6,16 +8,39 @@ import { BoardBtnComponent } from './board-btn/board-btn.component';
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [BoardBtnComponent],
+  imports: [CommonModule, FormsModule, BoardBtnComponent],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent {
-  isSidebarBtnClicked = false;
-  private boardService = inject(BoardService);
+  boardService = inject(BoardService);
   boards = this.boardService.boards;
+
+  isActive: boolean = false;
+  isSidebarBtnClicked: boolean = false;
+  isAddBtnClicked: boolean = false;
+  boardNameInput!: string;
+  
+
+  toggleActive() {
+    this.isActive = !this.isActive;
+  }
 
   onSideBarBtnClick() {
     this.isSidebarBtnClicked = !this.isSidebarBtnClicked;
+    this.isAddBtnClicked = false;
+    this.isActive = false;
+  }
+
+  onAddBtnClick() {
+    this.isAddBtnClicked = !this.isAddBtnClicked;
+  }
+
+  onAddBoard() {
+    this.boardService.addBoard(this.boardNameInput);
+  }
+
+  onSubmit(form: NgForm) {
+    form.resetForm();
   }
 }
