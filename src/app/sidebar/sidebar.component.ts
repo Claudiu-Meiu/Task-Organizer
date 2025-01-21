@@ -20,7 +20,6 @@ export class SidebarComponent {
   isSidebarBtnClicked: boolean = false;
   isAddBtnClicked: boolean = false;
   boardNameInput!: string;
-  
 
   toggleActive() {
     this.isActive = !this.isActive;
@@ -41,6 +40,7 @@ export class SidebarComponent {
   }
 
   onSubmit(form: NgForm) {
+    this.onAddBoard();
     form.resetForm();
   }
 }

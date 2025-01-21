@@ -13,7 +13,7 @@
   <header class="header-content">
     <h3>Your boards</h3>
     <button class="add-board-btn" [ngClass]="{'active' : isActive}" (click)="onAddBtnClick()"
-      (click)="toggleActive() "><i class="pi pi-plus"></i></button>
+      (click)="toggleActive()"><i class="pi pi-plus"></i></button>
     @if (isAddBtnClicked) {
     <form class="add-board-form" #addBoard="ngForm" (ngSubmit)="onSubmit(addBoard)">
       <div class="add-board-header">
@@ -23,7 +23,7 @@
       </div>
       <input id="boardNameInput" [(ngModel)]="boardNameInput" name="boardNameInput" type="text" required />
       <div class="submit-wrapper">
-        <button type="submit" (click)="onAddBoard()">Create</button>
+        <button type="submit" (click)="onAddBtnClick()" (click)="toggleActive()">Create</button>
       </div>
     </form>
     }
