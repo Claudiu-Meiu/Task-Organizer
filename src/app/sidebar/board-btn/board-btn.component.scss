@@ -1,45 +1,83 @@
-.sidebar-item-btn {
-  text-decoration: none;
-  font-size: 14px;
+.wrapper {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #222526;
-  color: whitesmoke;
-  padding: 10px 20px;
-  text-align: left;
-  border: none;
-  border-radius: 5px;
-  &:hover {
-    cursor: pointer;
-    transition: ease 0.2s;
-    background-color: #245b8b5d;
-    color: #00eeff;
-    box-shadow: 0px 0px 0px 1px #00eeff92;
-    .pi-ellipsis-h {
-      color: #00eeff;
-    }
-  }
-  &.active {
-    background-color: #245b8b5d;
-    color: #00eeff;
-    .pi-ellipsis-h {
-      color: #00eeff;
-    }
-  }
-  .board-btn-action-btn {
-    border-radius: 5px;
-    padding: 5px 10px;
+  .sidebar-item-btn {
+    flex-grow: 1;
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #222526;
     color: whitesmoke;
-    background: none;
+    padding: 10px 20px;
+    text-align: left;
     border: none;
-    .pi-ellipsis-h {
-      padding-top: 4px;
-    }
+    border-radius: 5px;
     &:hover {
-      transition: ease 0.2s;
       cursor: pointer;
-      background-color: #00eeff18;
+      transition: ease 0.2s;
+      background-color: #245b8b5d;
+      color: #00eeff;
+      box-shadow: 0px 0px 0px 1px #00eeff92;
+      .pi-ellipsis-h {
+        color: #00eeff;
+      }
+    }
+    &.active {
+      background-color: #245b8b5d;
+      color: #00eeff;
+      .pi-ellipsis-h {
+        color: #00eeff;
+      }
+    }
+    .board-btn-action-btn {
+      border-radius: 5px;
+      padding: 5px 10px;
+      color: whitesmoke;
+      background: none;
+      border: none;
+      .pi-ellipsis-h {
+        padding-top: 4px;
+      }
+      &.active {
+        color: #00eeff;
+        background-color: #00eeff18;
+      }
+      &:hover {
+        transition: ease 0.2s;
+        cursor: pointer;
+        background-color: #00eeff18;
+        box-shadow: 0px 0px 0px 1px #00eeff92;
+      }
+    }
+  }
+
+  .action-btns-wrapper {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    padding-right: 0;
+    .edit-board,
+    .delete-board {
+      transition: ease 0.2s;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: whitesmoke;
+      .pi-pen-to-square,
+      .pi-trash {
+        padding-top: 3px;
+      }
+    }
+    .edit-board:hover {
+      background-color: #245b8b5d;
+      color: #00eeff;
+    }
+    .delete-board:hover {
+      background-color: #ff000015;
+      color: #ff0000b5;
     }
   }
 }

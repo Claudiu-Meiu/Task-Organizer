@@ -1,4 +1,13 @@
-<a class="sidebar-item-btn" [routerLink]="['/board', boardBtn.id, boardBtn.boardUrl]" routerLinkActive="active">
-  {{ boardBtn.boardName }}
-  <button class="board-btn-action-btn"><i class="pi pi-ellipsis-h"></i></button>
-</a>
+<div class="wrapper">
+  <a class="sidebar-item-btn" [routerLink]="['/board', boardBtn.id, boardBtn.boardUrl]" routerLinkActive="active">
+    {{ boardBtn.boardName }}
+    <button class="board-btn-action-btn" [ngClass]="{'active' : isActive}" (click)="onBoardBtnActionClicked()"
+      (click)="toggleActive()"><i class="pi pi-ellipsis-h"></i></button>
+  </a>
+  @if (isBoardBtnActionClicked) {
+  <div class="action-btns-wrapper">
+    <button class="edit-board"><i class="pi pi-pen-to-square"></i></button>
+    <button class="delete-board" (click)="onDeleteBoard()"><i class="pi pi-trash"></i></button>
+  </div>
+  }
+</div>

@@ -18,8 +18,6 @@ export class BoardService {
 
   addBoard(boardName: string) {
     this.existingIds = new Set(this.boards.map((board) => board.id));
-    console.log(this.existingIds);
-    
     this.newId = 1;
     while (this.existingIds.has(this.newId)) {
       this.newId++;
@@ -30,5 +28,11 @@ export class BoardService {
       boardUrl: boardName.toLowerCase().replace(/ /g, '-'),
     };
     this.boards.push(this.newBoard);
+  }
+
+  deleteBoard(boardBtnId: number) {
+    return (this.boards = this.boards.filter(
+      (board) => board.id !== boardBtnId
+    ));
   }
 }

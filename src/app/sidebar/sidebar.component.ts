@@ -14,7 +14,6 @@ import { BoardBtnComponent } from './board-btn/board-btn.component';
 })
 export class SidebarComponent {
   boardService = inject(BoardService);
-  boards = this.boardService.boards;
 
   isActive: boolean = false;
   isSidebarBtnClicked: boolean = false;
