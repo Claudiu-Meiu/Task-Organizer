@@ -1,12 +1,28 @@
 <div class="wrapper">
   <a class="sidebar-item-btn" [routerLink]="['/board', boardBtn.id, boardBtn.boardUrl]" routerLinkActive="active">
     {{ boardBtn.boardName }}
-    <button class="board-btn-action-btn" [ngClass]="{'active' : isActive}" (click)="onBoardBtnActionClicked()"
-      (click)="toggleActive()"><i class="pi pi-ellipsis-h"></i></button>
+    <button class="board-btn-action-btn" [ngClass]="{'active' : isBoardBtnActionActive}"
+      (click)="onBoardBtnActionClicked(); toggleBoardBtnActionActive()"><i class="pi pi-ellipsis-h"></i></button>
   </a>
   @if (isBoardBtnActionClicked) {
   <div class="action-btns-wrapper">
-    <button class="edit-board"><i class="pi pi-pen-to-square"></i></button>
+    <button class="edit-board" [ngClass]="{'active' : isEditBtnActive}"
+      (click)="onEditBoardBtnClicked(); toggleEditBoardBtnActive()"><i class="pi pi-pen-to-square"></i></button>
+    @if (isEditBoardBtnClicked) {
+    <form class="edit-board-form" #editBoard="ngForm" (ngSubmit)="onSubmitEdit(editBoard)">
+      <div class="edit-board-header">
+        <label for="boardNameInput">Board title</label>
+        <button class="close-edit-board" type="button"
+          (click)="onEditBoardBtnClicked(); toggleEditBoardBtnActive(); editBoard.resetForm()"><i
+            class="pi pi-times"></i></button>
+      </div>
+      <input id="boardNameInput" [(ngModel)]="boardNameInput" name="boardNameInput" type="text" required />
+      <div class="submit-wrapper">
+        <button type="submit" [disabled]="!editBoard.valid"
+          (click)="toggleEditBoardBtnActive(); onEditBoardBtnClicked(); onBoardBtnActionClicked(); toggleBoardBtnActionActive()">Edit</button>
+      </div>
+    </form>
+    }
     <button class="delete-board" (click)="onDeleteBoard()"><i class="pi pi-trash"></i></button>
   </div>
   }

@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { BoardsArray } from '../_shared/boards-array';
 import { type Board } from '../_shared/board.model';
@@ -7,6 +8,8 @@ import { type Board } from '../_shared/board.model';
   providedIn: 'root',
 })
 export class BoardService {
+  router = inject(Router);
+
   boards: Board[] = BoardsArray;
   existingIds!: any;
   newId!: number;
@@ -28,6 +31,7 @@ export class BoardService {
       boardUrl: boardName.toLowerCase().replace(/ /g, '-'),
     };
     this.boards.push(this.newBoard);
+    this.router.navigate(['/board', this.newBoard.id, this.newBoard.boardUrl]);
   }
 
   deleteBoard(boardBtnId: number) {

@@ -75,9 +75,69 @@
       background-color: #245b8b5d;
       color: #00eeff;
     }
+    .edit-board.active {
+      background-color: #245b8b5d;
+      color: #00eeff;
+    }
     .delete-board:hover {
       background-color: #ff000015;
       color: #ff0000b5;
     }
+  }
+}
+
+.edit-board-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #111213;
+  box-shadow: 0px 0px 0px 1px #cccccc1f;
+  border-radius: 5px;
+  position: fixed;
+  margin-top: 3rem;
+  .edit-board-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .close-edit-board {
+      border-radius: 5px;
+      padding: 5px 10px;
+      background: none;
+      color: whitesmoke;
+      border: none;
+      &:hover {
+        transition: ease 0.2s;
+        cursor: pointer;
+        background-color: #ff000015;
+        color: #ff0000b5;
+      }
+      .pi-times {
+        padding-top: 3px;
+      }
+    }
+  }
+  .submit-wrapper {
+    button {
+      width: 100%;
+      background-color: #222526;
+      color: whitesmoke;
+      border: none;
+      padding: 0.3rem;
+      border-radius: 3px;
+      &:hover {
+        transition: ease 0.2s;
+        cursor: pointer;
+        background-color: #245b8b5d;
+        color: #00eeff;
+      }
+    }
+  }
+  input {
+    border: none;
+    background-color: #222526;
+    color: whitesmoke;
+    border-radius: 3px;
+    padding: 0.5rem;
   }
 }

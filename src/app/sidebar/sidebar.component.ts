@@ -38,7 +38,7 @@ export class SidebarComponent {
     this.boardService.addBoard(this.boardNameInput);
   }
 
-  onSubmit(form: NgForm) {
+  onSubmitCreate(form: NgForm) {
     this.onAddBoard();
     form.resetForm();
   }
