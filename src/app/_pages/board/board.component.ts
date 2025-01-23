@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import { BoardService } from '../_shared/board.service';
+import { BoardService } from '../../_shared/board.service';
 
 @Component({
   selector: 'app-board',
@@ -11,16 +11,22 @@ import { BoardService } from '../_shared/board.service';
   styleUrl: './board.component.scss',
 })
 export class BoardComponent implements OnInit {
+  router: Router = inject(Router);
   route: ActivatedRoute = inject(ActivatedRoute);
   boardService = inject(BoardService);
 
-  boardName!: string;
+  boardTitle!: string;
 
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
       const boardId = Number(params.get('id'));
+      const boardUrl = params.get('boardUrl');
       const selectedBoard = this.boardService.getBoardById(boardId)[0];
-      this.boardName = selectedBoard.boardName;
+      if (!selectedBoard || selectedBoard.boardUrl !== boardUrl) {
+        this.router.navigate(['/not-found']);
+      } else {
+        this.boardTitle = selectedBoard.boardName;
+      }
     });
   }
 }

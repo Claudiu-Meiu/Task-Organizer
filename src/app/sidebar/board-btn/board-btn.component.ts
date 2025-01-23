@@ -16,7 +16,7 @@ import { BoardService } from '../../_shared/board.service';
 export class BoardBtnComponent {
   @Input({ required: true }) boardBtn!: Board;
   boardService = inject(BoardService);
-  router = inject(Router);
+  router: Router = inject(Router);
 
   isBoardBtnActionActive: boolean = false;
   isEditBtnActive: boolean = false;
