@@ -22,15 +22,14 @@
       align-items: center;
       justify-content: center;
       gap: 1rem;
-      border-radius: 5px;
+      border-radius: 10px;
       text-decoration: none;
       padding: 10px;
-      background-color: #222526;
+      background-color: #22252677;
       color: whitesmoke;
       &:hover {
         transition: ease 0.2s;
-        background-color: #245b8b5d;
-        color: #00eeff;
+        background-color: #222526;
       }
     }
   }

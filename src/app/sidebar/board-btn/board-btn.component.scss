@@ -10,15 +10,12 @@
     background-color: #222526;
     color: whitesmoke;
     padding: 10px 20px;
-    text-align: left;
-    border: none;
-    border-radius: 5px;
+    border-radius: 50px;
     &:hover {
       cursor: pointer;
       transition: ease 0.2s;
-      background-color: #245b8b5d;
+      background-color: #245b8b86;
       color: #00eeff;
-      box-shadow: 0px 0px 0px 1px #00eeff92;
       .pi-ellipsis-h {
         color: #00eeff;
       }
@@ -30,114 +27,123 @@
         color: #00eeff;
       }
     }
+    &.board-btn-active-action {
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
     .board-btn-action-btn {
-      border-radius: 5px;
-      padding: 5px 10px;
+      border-radius: 50px;
+      padding: 10px 14px;
       color: whitesmoke;
       background: none;
       border: none;
       .pi-ellipsis-h {
         padding-top: 4px;
       }
-      &.active {
-        color: #00eeff;
-        background-color: #00eeff18;
-      }
       &:hover {
         transition: ease 0.2s;
         cursor: pointer;
-        background-color: #00eeff18;
-        box-shadow: 0px 0px 0px 1px #00eeff92;
+        background-color: #245b8b5d;
       }
     }
   }
 
   .action-btns-wrapper {
+    background-color: #245b8b5d;
+    border-radius: 50px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
     display: flex;
-    gap: 0.5rem;
-    padding: 0.5rem;
-    padding-right: 0;
+    gap: 10px;
+    padding: 10px;
+    padding-right: 0.5rem;
     .edit-board,
     .delete-board {
-      transition: ease 0.2s;
-      padding: 5px 10px;
-      border-radius: 5px;
+      padding: 10px 14px;
+      border-radius: 50px;
       cursor: pointer;
       background: none;
       border: none;
-      color: whitesmoke;
+      color: #00eeff;
       .pi-pen-to-square,
       .pi-trash {
         padding-top: 3px;
       }
     }
     .edit-board:hover {
+      transition: ease 0.2s;
       background-color: #245b8b5d;
-      color: #00eeff;
     }
     .edit-board.active {
       background-color: #245b8b5d;
-      color: #00eeff;
     }
     .delete-board:hover {
-      background-color: #ff000015;
+      transition: ease 0.5s;
+      background-color: #ff000034;
       color: #ff0000b5;
     }
   }
-}
 
-.edit-board-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 1rem;
-  background-color: #111213;
-  box-shadow: 0px 0px 0px 1px #cccccc1f;
-  border-radius: 5px;
-  position: fixed;
-  margin-top: 3rem;
-  .edit-board-header {
+  .edit-board-form {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    .close-edit-board {
-      border-radius: 5px;
-      padding: 5px 10px;
-      background: none;
-      color: whitesmoke;
-      border: none;
-      &:hover {
-        transition: ease 0.2s;
-        cursor: pointer;
-        background-color: #ff000015;
-        color: #ff0000b5;
-      }
-      .pi-times {
-        padding-top: 3px;
-      }
-    }
-  }
-  .submit-wrapper {
-    button {
-      width: 100%;
-      background-color: #222526;
-      color: whitesmoke;
-      border: none;
-      padding: 0.3rem;
-      border-radius: 3px;
-      &:hover {
-        transition: ease 0.2s;
-        cursor: pointer;
-        background-color: #245b8b5d;
+    .edit-board-form-content {
+      flex-grow: 1;
+      gap: 10px;
+      text-decoration: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #245b8b5d;
+      color: #00eeff;
+      padding: 8px 8px;
+      border-radius: 50px;
+      input {
+        width: 100%;
+        padding: 14px 14px;
+        background: none;
+        border: none;
         color: #00eeff;
+        border-radius: 50px;
+      }
+      .edit-board-form-btns {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        button {
+          color: #00eeff;
+          padding: 10px 14px;
+          border-radius: 50px;
+          border: none;
+          cursor: pointer;
+        }
+        .confirm-edit-btn {
+          background: none;
+          .pi-check {
+            padding-top: 3px;
+          }
+          &:disabled {
+            cursor: default;
+            background: none;
+            color: #f5f5f518;
+          }
+          &:not(:disabled):hover {
+            transition: ease 0.2s;
+            background-color: #245b8b86;
+          }
+        }
+        .close-edit-btn {
+          background: none;
+          .pi-times {
+            padding-top: 3px;
+          }
+          &:hover {
+            transition: ease 0.2s;
+            background-color: #ff000034;
+            color: #ff0000b5;
+          }
+        }
       }
     }
-  }
-  input {
-    border: none;
-    background-color: #222526;
-    color: whitesmoke;
-    border-radius: 3px;
-    padding: 0.5rem;
   }
 }

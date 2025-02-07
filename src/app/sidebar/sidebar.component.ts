@@ -1,4 +1,11 @@
-import { Component, inject } from '@angular/core';
+import {
+  Component,
+  inject,
+  HostListener,
+  ElementRef,
+  ViewChild,
+  AfterViewChecked,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgForm, FormsModule } from '@angular/forms';
 
@@ -12,33 +19,61 @@ import { BoardBtnComponent } from './board-btn/board-btn.component';
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
 })
-export class SidebarComponent {
+export class SidebarComponent implements AfterViewChecked {
   boardService = inject(BoardService);
 
-  isActive: boolean = false;
   isSidebarBtnClicked: boolean = false;
   isAddBtnClicked: boolean = false;
   boardNameInput!: string;
 
-  toggleActive() {
-    this.isActive = !this.isActive;
+  @ViewChild('addBoardWrapper') addBoardWrapper!: ElementRef;
+  @ViewChild('addBoardInput') addBoardInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('addBoardForm') addBoardForm!: NgForm;
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    if (
+      this.addBoardWrapper &&
+      !this.addBoardWrapper.nativeElement.contains(target)
+    ) {
+      this.isAddBtnClicked = false;
+      this.addBoardForm.resetForm();
+    }
   }
 
-  onSideBarBtnClick() {
-    this.isSidebarBtnClicked = !this.isSidebarBtnClicked;
-    this.isAddBtnClicked = false;
-    this.isActive = false;
+  setFocus() {
+    if (this.isAddBtnClicked && this.addBoardInput) {
+      this.addBoardInput.nativeElement.focus();
+    }
   }
 
-  onAddBtnClick() {
-    this.isAddBtnClicked = !this.isAddBtnClicked;
+  ngAfterViewChecked() {
+    this.setFocus();
+  }
+
+  toggleButtonState(
+    button: 'sidebarBtn' | 'addBoardBtn' | 'submitAddBoard' | 'closeAddBoard'
+  ) {
+    if (button === 'sidebarBtn') {
+      this.isSidebarBtnClicked = !this.isSidebarBtnClicked;
+    }
+    if (button === 'addBoardBtn') {
+      this.isAddBtnClicked = true;
+    }
+    if (button === 'submitAddBoard') {
+      this.isAddBtnClicked = false;
+    }
+    if (button === 'closeAddBoard') {
+      this.isAddBtnClicked = false;
+    }
   }
 
   onAddBoard() {
     this.boardService.addBoard(this.boardNameInput);
   }
 
-  onSubmitCreate(form: NgForm) {
+  onSubmitAddBoard(form: NgForm) {
     this.onAddBoard();
     form.resetForm();
   }
