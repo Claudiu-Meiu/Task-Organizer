@@ -1,9 +1,10 @@
 .sidebar-hidden {
+  float: left;
   color: whitesmoke;
+  background-color: #111213;
+  box-shadow: 1px 0px 0px 0px #cccccc12;
   font-size: 18px;
-  background: none;
   border: none;
-  margin-top: 1px;
   padding-top: 2.5rem;
   height: 100vh;
   width: 30px;
@@ -13,52 +14,134 @@
   &:hover {
     transition: ease 0.2s;
     cursor: pointer;
-    background-color: #222526;
-    color: #00eeff;
+    background-color: #22252677;
   }
 }
 .sidebar {
+  float: left;
   background-color: #111213;
-  margin-top: 1px;
   width: 20%;
   height: 100vh;
-  box-shadow: 1px 0px 0px 0px #cccccc1f;
-  header {
+  box-shadow: 1px 0px 0px 0px #cccccc12;
+  .header {
     position: relative;
     display: flex;
     justify-content: space-between;
-    box-shadow: 0px 0px 0px 0px #cccccc1f;
-    padding: 1rem;
+    box-shadow: 0px 1px 0px 0px #cccccc12;
+    padding: 0.5rem;
     .sidebar-close-btn {
-      
+      padding-left: 10px;
+      padding-right: 10px;
       color: whitesmoke;
       font-size: 18px;
-      border-radius: 5px;
-      padding: 0px 10px;
-      margin-top: 10px;
-      margin-bottom: 10px;
+      border-radius: 10px;
       border: none;
       background: none;
       &:hover {
         transition: ease 0.2s;
         cursor: pointer;
-        background-color: #ff000015;
-        color: #ff0000b5;
+        background-color: #22252677;
       }
       .pi-angle-double-left {
         padding-top: 5px;
       }
     }
+    .icon {
+      border-radius: 10px;
+      padding: 10px 10px;
+      background-color: #245b8b5d;
+      color: #00eeff;
+    }
   }
-  .sidebar-content {
-    overflow-y: auto;
-    height: 70vh;
-  }
+}
+.sidebar-content {
+  overflow-y: auto;
+  height: 70vh;
   ul {
     padding-left: 0;
     list-style-type: none;
     .sidebar-item {
       padding: 0.5rem;
+      .add-board-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border: none;
+        background-color: #22252674;
+        color: whitesmoke;
+        padding: 14px 14px;
+        border-radius: 50px;
+        cursor: pointer;
+        width: 100%;
+        &:hover {
+          transition: ease 0.2s;
+          background-color: #222526;
+        }
+      }
+      .add-board-form {
+        display: flex;
+        .add-board-form-content {
+          flex-grow: 1;
+          gap: 10px;
+          text-decoration: none;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background-color: #222526;
+          color: whitesmoke;
+          padding: 8px 8px;
+          border-radius: 50px;
+          input {
+            width: 100%;
+            padding: 14px 14px;
+            background: none;
+            border: none;
+            color: whitesmoke;
+            border-radius: 50px;
+          }
+          .add-board-form-btns {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            button {
+              color: whitesmoke;
+              padding: 10px 14px;
+              border-radius: 50px;
+              border: none;
+              cursor: pointer;
+            }
+            .confirm-add-btn {
+              background: none;
+              .pi-check {
+                padding-top: 3px;
+              }
+              &:disabled {
+                cursor: default;
+                background: none;
+                color: #f5f5f518;
+              }
+              &:not(:disabled):hover {
+                transition: ease 0.2s;
+                background-color: #245b8b86;
+                color: #00eeff;
+              }
+            }
+            .close-add-btn {
+              background: none;
+              .pi-times {
+                padding-top: 3px;
+              }
+              &:hover {
+                transition: ease 0.2s;
+                background-color: #ff000034;
+                color: #ff0000b5;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -66,5 +149,9 @@
 @media (max-width: 960px) {
   .sidebar {
     width: 60%;
+    .sidebar-content {
+      overflow-y: auto;
+      height: 50vh;
+    }
   }
 }

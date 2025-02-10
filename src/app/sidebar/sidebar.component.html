@@ -1,23 +1,43 @@
-@if (!sidebarBtnClicked) {
-  <button (click)="onSideBarBtnClick()" class="sidebar-hidden">
-    <i class="pi pi-angle-double-right"></i>
-  </button>
+@if (isSidebarBtnClicked) {
+<button (click)="toggleButtonState('sidebarBtn')" class="sidebar-hidden">
+  <i class="pi pi-angle-double-right"></i>
+</button>
 } @else {
-  <aside class="sidebar">
-    <header>
-      <h3>Your boards</h3>
-      <button (click)="onSideBarBtnClick()" class="sidebar-close-btn">
-        <i class="pi pi-angle-double-left"></i>
-      </button>
-    </header>
-    <div class="sidebar-content">
-      <ul>
-        @for (index of boards; track index.id) {
-          <li class="sidebar-item">
-            <app-board-btn [boardBtn]="index" />
-          </li>
-        }
-      </ul>
-    </div>
-  </aside>
+<aside class="sidebar">
+  <header class="header">
+    <h3><i class="icon pi pi-list"></i> Task Organizer</h3>
+    <button (click)="toggleButtonState('sidebarBtn')" class="sidebar-close-btn">
+      <i class="pi pi-angle-double-left"></i>
+    </button>
+  </header>
+  <div class="sidebar-content">
+    <ul>
+      @for (board of boardService.boards; track board.id) {
+      <li class="sidebar-item">
+        <app-board-btn [boardBtn]="board" />
+      </li>
+      }
+      @if (isAddBtnClicked) {
+      <li class="sidebar-item" #addBoardWrapper>
+        <form class="add-board-form" #addBoardForm="ngForm" (ngSubmit)="onSubmitAddBoard(addBoardForm)">
+          <div class="add-board-form-content">
+            <input #addBoardInput [(ngModel)]="boardNameInput" name="boardNameInput" required>
+            <div class="add-board-form-btns">
+              <button class="confirm-add-btn" type="submit" [disabled]="addBoardForm.invalid"
+                (click)="toggleButtonState('submitAddBoard')"><i class="pi pi-check"></i></button>
+              <button class="close-add-btn" type="button"
+                (click)="toggleButtonState('closeAddBoard'); addBoardForm.resetForm()"><i
+                  class="pi pi-times"></i></button>
+            </div>
+          </div>
+        </form>
+      </li>
+      } @else {
+      <li class="sidebar-item">
+        <button class="add-board-btn" (click)="toggleButtonState('addBoardBtn');"><i class="pi pi-plus"></i></button>
+      </li>
+      }
+    </ul>
+  </div>
+</aside>
 }

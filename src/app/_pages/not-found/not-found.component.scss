@@ -1,0 +1,36 @@
+.not-found-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  padding: 1rem;
+  .error-code {
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #ff000015;
+    color: #ff0000b5;
+    box-shadow: 0px 0px 0px 1px #ff0000b5;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 20rem;
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      border-radius: 10px;
+      text-decoration: none;
+      padding: 10px;
+      background-color: #22252677;
+      color: whitesmoke;
+      &:hover {
+        transition: ease 0.2s;
+        background-color: #222526;
+      }
+    }
+  }
+}
