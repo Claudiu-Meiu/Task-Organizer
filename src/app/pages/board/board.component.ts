@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { BoardService } from '../../../services/board.service';
+import { BoardService } from '../../services/board.service';
 
 @Component({
   selector: 'app-board',

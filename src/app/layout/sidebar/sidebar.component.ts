@@ -9,7 +9,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { NgForm, FormsModule } from '@angular/forms';
 
-import { BoardService } from '../../../services/board.service';
+import { BoardService } from '../../services/board.service';
 import { BoardBtnComponent } from './board-btn/board-btn.component';
 
 @Component({

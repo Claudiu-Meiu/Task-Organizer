@@ -14,7 +14,7 @@ import { NgForm, FormsModule } from '@angular/forms';
 
 import { type Board } from '../../../models/board.model';
 import { AppRoutes } from '../../../models/app-routes.enum';
-import { BoardService } from '../../../../services/board.service';
+import { BoardService } from '../../../services/board.service';
 
 @Component({
   selector: 'app-board-btn',
