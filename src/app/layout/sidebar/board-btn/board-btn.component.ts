@@ -12,9 +12,9 @@ import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { NgForm, FormsModule } from '@angular/forms';
 
-import { type Board } from '../../_shared/board.model';
-import { AppRoutes } from '../../_shared/app-routes.enum';
-import { BoardService } from '../../_shared/board.service';
+import { type Board } from '../../../models/board.model';
+import { AppRoutes } from '../../../models/app-routes.enum';
+import { BoardService } from '../../../../services/board.service';
 
 @Component({
   selector: 'app-board-btn',

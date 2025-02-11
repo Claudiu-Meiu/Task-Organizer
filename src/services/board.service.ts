@@ -1,9 +1,9 @@
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { type Board } from '../_shared/board.model';
-import { AppRoutes } from './app-routes.enum';
-import { BoardsArray } from '../_shared/boards-array';
+import { type Board } from '../app/models/board.model';
+import { AppRoutes } from '../app/models/app-routes.enum';
+import { BoardsArray } from '../app/models/boards-array';
 
 @Injectable({
   providedIn: 'root',
