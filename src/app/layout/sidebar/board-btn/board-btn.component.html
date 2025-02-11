@@ -1,9 +1,10 @@
-<div class="wrapper">
+<div class="board-btn-wrapper">
   @if (isEditBoardBtnClicked) {
-  <div #editBoardWrapper>
-    <form class="edit-board-form" #editBoardForm="ngForm" (ngSubmit)="onSubmitEdit(editBoardForm)">
+  <div class="edit-board-wrapper" #editBoardWrapper>
+    <form #editBoardForm="ngForm" (ngSubmit)="onSubmitEdit(editBoardForm)">
       <div class="edit-board-form-content">
-        <input #editBoardInput id="boardNameInput" [(ngModel)]="boardNameInput" name="boardNameInput" type="text" required>
+        <input #editBoardInput id="boardNameInput" [(ngModel)]="boardNameInput" name="boardNameInput" type="text"
+          required>
         <div class="edit-board-form-btns">
           <button class="confirm-edit-btn" type="submit" [disabled]="!editBoardForm.valid"
             (click)="toggleButtonState('submitBtn')"><i class="pi pi-check"></i></button>
@@ -14,7 +15,7 @@
     </form>
   </div>
   } @else {
-  <a class="sidebar-item-btn" [ngClass]="{'board-btn-active-action' : isBoardBtnActionClicked}"
+  <a class="board-btn" [ngClass]="{'board-btn-active-action' : isBoardBtnActionClicked}"
     [routerLink]="['/board', boardBtn.id, boardBtn.boardUrl]" routerLinkActive="active">
     {{ boardBtn.boardName }}
     <button class="board-btn-action-btn" (click)="toggleButtonState('actionBtn')"><i

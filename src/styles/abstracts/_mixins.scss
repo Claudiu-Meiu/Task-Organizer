@@ -1,0 +1,21 @@
+@mixin flexCenter($direction) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $direction;
+}
+
+@mixin flexSpaceBetween() {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+@mixin actionBtnSm() {
+  cursor: pointer;
+  padding: 10px 14px;
+  border-radius: $border-radius-sm;
+  border: none;
+  background: none;
+}

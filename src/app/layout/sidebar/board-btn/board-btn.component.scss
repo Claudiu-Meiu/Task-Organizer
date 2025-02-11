@@ -1,30 +1,30 @@
-.wrapper {
+@import '../../../../styles/abstracts';
+
+.board-btn-wrapper {
   display: flex;
-  .sidebar-item-btn {
+  .board-btn {
     flex-grow: 1;
+    @include flexSpaceBetween();
+    padding: 10px;
+    border-radius: $border-radius-sm;
     text-decoration: none;
-    font-size: 14px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #222526;
-    color: whitesmoke;
-    padding: 10px 20px;
-    border-radius: 50px;
+    font-size: $font-size-sm;
+    color: $color-text-white;
+    background-color: $color-btn-bg;
     &:hover {
+      transition: $transition-fast;
       cursor: pointer;
-      transition: ease 0.2s;
-      background-color: #245b8b86;
-      color: #00eeff;
+      color: $color-text-cyan;
+      background-color: $color-btn-bg-hover;
       .pi-ellipsis-h {
-        color: #00eeff;
+        color: $color-text-cyan;
       }
     }
     &.active {
-      background-color: #245b8b5d;
-      color: #00eeff;
+      color: $color-text-cyan;
+      background-color: $color-btn-bg-active;
       .pi-ellipsis-h {
-        color: #00eeff;
+        color: $color-text-cyan;
       }
     }
     &.board-btn-active-action {
@@ -32,104 +32,86 @@
       border-bottom-right-radius: 0px;
     }
     .board-btn-action-btn {
-      border-radius: 50px;
-      padding: 10px 14px;
-      color: whitesmoke;
-      background: none;
-      border: none;
+      @include actionBtnSm();
+      color: $color-text-white;
       .pi-ellipsis-h {
         padding-top: 4px;
       }
       &:hover {
-        transition: ease 0.2s;
-        cursor: pointer;
-        background-color: #245b8b5d;
+        transition: $transition-fast;
+        background-color: $color-btn-bg-hover;
       }
     }
   }
 
   .action-btns-wrapper {
-    background-color: #245b8b5d;
-    border-radius: 50px;
+    @include flexSpaceBetween();
+    gap: $flex-gap-sm;
+    padding: 10px;
+    border-radius: $border-radius-sm;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
-    display: flex;
-    gap: 10px;
-    padding: 10px;
-    padding-right: 0.5rem;
+    background-color: $color-btn-bg-active;
     .edit-board,
     .delete-board {
-      padding: 10px 14px;
-      border-radius: 50px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      color: #00eeff;
+      @include actionBtnSm();
+      color: $color-text-cyan;
       .pi-pen-to-square,
       .pi-trash {
         padding-top: 3px;
       }
     }
     .edit-board:hover {
-      transition: ease 0.2s;
-      background-color: #245b8b5d;
+      transition: $transition-fast;
+      background-color: $color-btn-bg-active;
     }
     .edit-board.active {
-      background-color: #245b8b5d;
+      background-color: $color-btn-bg-active;
     }
     .delete-board:hover {
-      transition: ease 0.5s;
-      background-color: #ff000034;
-      color: #ff0000b5;
+      transition: $transition-slow;
+      color: $color-text-danger;
+      background-color: $color-bg-danger;
     }
   }
 
-  .edit-board-form {
-    display: flex;
+  .edit-board-wrapper {
+    width: 100%;
     .edit-board-form-content {
-      flex-grow: 1;
-      gap: 10px;
+      @include flexSpaceBetween();
+      gap: $flex-gap-sm;
+      border-radius: $border-radius-sm;
+      padding: 10px;
       text-decoration: none;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #245b8b5d;
-      color: #00eeff;
-      padding: 8px 8px;
-      border-radius: 50px;
+      color: $color-text-cyan;
+      background-color: $color-btn-bg-active;
       input {
         width: 100%;
-        padding: 14px 14px;
-        background: none;
+        padding: 12px;
+        border-radius: $border-radius-sm;
         border: none;
-        color: #00eeff;
-        border-radius: 50px;
+        color: $color-text-cyan;
+        background: none;
       }
       .edit-board-form-btns {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
+        @include flexCenter(row);
+        gap: $flex-gap-sm;
         button {
-          color: #00eeff;
-          padding: 10px 14px;
-          border-radius: 50px;
-          border: none;
-          cursor: pointer;
+          @include actionBtnSm();
+          color: $color-text-cyan;
+          border-radius: $border-radius-sm;
         }
         .confirm-edit-btn {
-          background: none;
           .pi-check {
             padding-top: 3px;
           }
           &:disabled {
             cursor: default;
-            background: none;
-            color: #f5f5f518;
+            color: $color-disabled;
           }
           &:not(:disabled):hover {
-            transition: ease 0.2s;
-            background-color: #245b8b86;
+            transition: $transition-fast;
+            background-color: $color-btn-bg-hover;
           }
         }
         .close-edit-btn {
@@ -138,9 +120,9 @@
             padding-top: 3px;
           }
           &:hover {
-            transition: ease 0.2s;
-            background-color: #ff000034;
-            color: #ff0000b5;
+            transition: $transition-fast;
+            background-color: $color-bg-danger;
+            color: $color-text-danger;
           }
         }
       }

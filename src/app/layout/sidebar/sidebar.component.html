@@ -19,7 +19,7 @@
       }
       @if (isAddBtnClicked) {
       <li class="sidebar-item" #addBoardWrapper>
-        <form class="add-board-form" #addBoardForm="ngForm" (ngSubmit)="onSubmitAddBoard(addBoardForm)">
+        <form #addBoardForm="ngForm" (ngSubmit)="onSubmitAddBoard(addBoardForm)">
           <div class="add-board-form-content">
             <input #addBoardInput [(ngModel)]="boardNameInput" name="boardNameInput" required>
             <div class="add-board-form-btns">

@@ -1,56 +1,54 @@
+@import '../../../styles/abstracts';
+
 .sidebar-hidden {
   float: left;
-  color: whitesmoke;
-  background-color: #111213;
-  box-shadow: 1px 0px 0px 0px #cccccc12;
-  font-size: 18px;
-  border: none;
-  padding-top: 2.5rem;
-  height: 100vh;
-  width: 30px;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  padding: 10px;
+  padding-top: 35px;
+  height: 100vh;
+  width: 0%;
+  border: none;
+  font-size: $font-size-lg;
+  color: $color-text-white;
+  background-color: $color-bg;
+  box-shadow: $box-shadow-h;
   &:hover {
-    transition: ease 0.2s;
+    transition: $transition-fast;
     cursor: pointer;
-    background-color: #22252677;
+    background-color: $color-btn-bg-hover-grey;
   }
 }
 .sidebar {
   float: left;
-  background-color: #111213;
-  width: 20%;
   height: 100vh;
-  box-shadow: 1px 0px 0px 0px #cccccc12;
+  width: 22%;
+  background-color: $color-bg;
+  box-shadow: $box-shadow-h;
   .header {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    box-shadow: 0px 1px 0px 0px #cccccc12;
-    padding: 0.5rem;
+    @include flexSpaceBetween();
+    padding: 10px;
+    box-shadow: $box-shadow-v;
     .sidebar-close-btn {
-      padding-left: 10px;
-      padding-right: 10px;
-      color: whitesmoke;
-      font-size: 18px;
-      border-radius: 10px;
+      padding: 10px;
+      border-radius: $border-radius-sm;
+      font-size: $font-size-lg;
       border: none;
+      color: $color-text-white;
       background: none;
       &:hover {
-        transition: ease 0.2s;
+        transition: $transition-fast;
         cursor: pointer;
-        background-color: #22252677;
+        background-color: $color-btn-bg-hover-grey;
       }
       .pi-angle-double-left {
         padding-top: 5px;
       }
     }
     .icon {
-      border-radius: 10px;
-      padding: 10px 10px;
-      background-color: #245b8b5d;
-      color: #00eeff;
+      padding: 10px;
+      border-radius: $border-radius-sm;
+      color: $color-text-cyan;
+      background-color: $color-btn-bg-active;
     }
   }
 }
@@ -61,83 +59,68 @@
     padding-left: 0;
     list-style-type: none;
     .sidebar-item {
-      padding: 0.5rem;
+      padding: 10px;
       .add-board-btn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
+        @include flexCenter(row);
+        gap: $flex-gap-sm;
+        padding: 14px;
+        border-radius: $border-radius-sm;
         border: none;
-        background-color: #22252674;
-        color: whitesmoke;
-        padding: 14px 14px;
-        border-radius: 50px;
-        cursor: pointer;
+        color: $color-text-white;
+        background: none;
+        box-shadow: $box-shadow-spread;
         width: 100%;
         &:hover {
-          transition: ease 0.2s;
-          background-color: #222526;
+          cursor: pointer;
+          transition: $transition-fast;
+          background-color: $color-btn-bg-hover-grey;
         }
       }
-      .add-board-form {
-        display: flex;
-        .add-board-form-content {
-          flex-grow: 1;
-          gap: 10px;
-          text-decoration: none;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          background-color: #222526;
-          color: whitesmoke;
-          padding: 8px 8px;
-          border-radius: 50px;
-          input {
-            width: 100%;
-            padding: 14px 14px;
-            background: none;
-            border: none;
-            color: whitesmoke;
-            border-radius: 50px;
+      .add-board-form-content {
+        @include flexSpaceBetween();
+        gap: $flex-gap-sm;
+        padding: 11px;
+        border-radius: $border-radius-sm;
+        text-decoration: none;
+        color: $color-text-white;
+        background-color: $color-btn-bg;
+        input {
+          width: 100%;
+          padding: 10px;
+          border-radius: $border-radius-sm;
+          border: none;
+          color: $color-text-white;
+          background: none;
+        }
+        .add-board-form-btns {
+          @include flexCenter(row);
+          gap: $flex-gap-sm;
+          button {
+            @include actionBtnSm();
+            color: $color-text-white;
           }
-          .add-board-form-btns {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            button {
-              color: whitesmoke;
-              padding: 10px 14px;
-              border-radius: 50px;
-              border: none;
-              cursor: pointer;
+          .confirm-add-btn {
+            .pi-check {
+              padding-top: 3px;
             }
-            .confirm-add-btn {
-              background: none;
-              .pi-check {
-                padding-top: 3px;
-              }
-              &:disabled {
-                cursor: default;
-                background: none;
-                color: #f5f5f518;
-              }
-              &:not(:disabled):hover {
-                transition: ease 0.2s;
-                background-color: #245b8b86;
-                color: #00eeff;
-              }
+            &:disabled {
+              cursor: default;
+              color: $color-disabled;
             }
-            .close-add-btn {
-              background: none;
-              .pi-times {
-                padding-top: 3px;
-              }
-              &:hover {
-                transition: ease 0.2s;
-                background-color: #ff000034;
-                color: #ff0000b5;
-              }
+            &:not(:disabled):hover {
+              transition: $transition-fast;
+              color: $color-text-cyan;
+              background-color: $color-btn-bg-hover;
+            }
+          }
+          .close-add-btn {
+            .pi-times {
+              padding-top: 3px;
+            }
+            &:hover {
+              transition: $transition-fast;
+              background-color: $color-bg-danger;
+              color: $color-text-danger;
             }
           }
         }
@@ -146,12 +129,32 @@
   }
 }
 
-@media (max-width: 960px) {
+@media (min-width: 240px) and (max-width: 599px) {
   .sidebar {
-    width: 60%;
+    position: absolute;
+    width: 100%;
+    .sidebar-content {
+      overflow-y: auto;
+      height: 60vh;
+    }
+  }
+}
+@media (min-width: 600px) and (max-width: 959px) {
+  .sidebar {
+    position: absolute;
+    width: 45%;
     .sidebar-content {
       overflow-y: auto;
       height: 50vh;
+    }
+  }
+}
+@media (min-width: 960px) and (max-width: 1279px) {
+  .sidebar {
+    width: 33%;
+    .sidebar-content {
+      overflow-y: auto;
+      height: 70vh;
     }
   }
 }
