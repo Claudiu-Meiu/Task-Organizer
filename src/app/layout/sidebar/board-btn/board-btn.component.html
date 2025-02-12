@@ -1,4 +1,14 @@
 <div class="board-btn-wrapper">
+  @if (isDeleteBoardBtnClicked) {
+  <div class="delete-board-wrapper" #deleteWrapper>
+    <div><i class="pi pi-trash"></i> {{ boardBtn.boardName }}?</div>
+    <div class="deletion-action-btns-wrapper">
+      <button class="confirm-board-deletion" (click)="onDeleteBoard()"><i class="pi pi-check"></i></button>
+      <button class="cancel-board-deletion" (click)="toggleButtonState('closeDeleteBtn')"><i
+          class="pi pi-times"></i></button>
+    </div>
+  </div>
+  } @else {
   @if (isEditBoardBtnClicked) {
   <div class="edit-board-wrapper" #editBoardWrapper>
     <form #editBoardForm="ngForm" (ngSubmit)="onSubmitEdit(editBoardForm)">
@@ -7,7 +17,7 @@
           required>
         <div class="edit-board-form-btns">
           <button class="confirm-edit-btn" type="submit" [disabled]="!editBoardForm.valid"
-            (click)="toggleButtonState('submitBtn')"><i class="pi pi-check"></i></button>
+            (click)="toggleButtonState('confirmEditBtn')"><i class="pi pi-check"></i></button>
           <button class="close-edit-btn" type="button" (click)="toggleButtonState('closeEditBtn')"><i
               class="pi pi-times"></i></button>
         </div>
@@ -23,10 +33,11 @@
   </a>
   @if (isBoardBtnActionClicked) {
   <div class="action-btns-wrapper" #actionWrapper>
-    <button class="edit-board" [ngClass]="{'active' : isEditBoardBtnClicked}" (click)="toggleButtonState('editBtn')"><i
-        class="pi pi-pen-to-square"></i></button>
-    <button class="delete-board" (click)="onDeleteBoard()"><i class="pi pi-trash"></i></button>
+    <button class="edit-board" (click)="toggleButtonState('editBtn')"><i class="pi pi-pen-to-square"></i></button>
+    <button class="delete-board" (click)="toggleButtonState('deleteBtn')"><i class="pi pi-trash"></i></button>
   </div>
   }
   }
+  }
+
 </div>

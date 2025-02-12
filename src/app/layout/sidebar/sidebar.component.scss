@@ -29,15 +29,15 @@
     padding: 10px;
     box-shadow: $box-shadow-v;
     .sidebar-close-btn {
-      padding: 10px;
+      padding: 20px;
       border-radius: $border-radius-sm;
       font-size: $font-size-lg;
       border: none;
       color: $color-text-white;
       background: none;
       &:hover {
-        transition: $transition-fast;
         cursor: pointer;
+        transition: $transition-fast;
         background-color: $color-btn-bg-hover-grey;
       }
       .pi-angle-double-left {

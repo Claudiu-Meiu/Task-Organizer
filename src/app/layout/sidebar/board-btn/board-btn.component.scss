@@ -65,9 +65,6 @@
       transition: $transition-fast;
       background-color: $color-btn-bg-active;
     }
-    .edit-board.active {
-      background-color: $color-btn-bg-active;
-    }
     .delete-board:hover {
       transition: $transition-slow;
       color: $color-text-danger;
@@ -121,10 +118,40 @@
           }
           &:hover {
             transition: $transition-fast;
-            background-color: $color-bg-danger;
             color: $color-text-danger;
+            background-color: $color-bg-danger;
           }
         }
+      }
+    }
+  }
+
+  .delete-board-wrapper {
+    flex-grow: 1;
+    @include flexSpaceBetween();
+    padding: 10.5px;
+    border-radius: $border-radius-sm;
+    font-size: $font-size-sm;
+    color: $color-text-danger;
+    background-color: $color-bg-danger;
+    .deletion-action-btns-wrapper {
+      @include flexCenter(row);
+      gap: $flex-gap-sm;
+      button {
+        @include actionBtnSm();
+        color: $color-text-danger;
+      }
+      .confirm-board-deletion:hover {
+        transition: $transition-slow;
+        background-color: $color-bg-danger;
+      }
+      .cancel-board-deletion:hover {
+        transition: $transition-fast;
+        background-color: $color-btn-bg-hover-grey;
+      }
+      .pi-check,
+      .pi-times {
+        padding-top: 3px;
       }
     }
   }

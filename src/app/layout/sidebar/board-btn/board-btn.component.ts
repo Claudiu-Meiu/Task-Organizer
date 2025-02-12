@@ -30,6 +30,7 @@ export class BoardBtnComponent implements OnInit, AfterViewChecked {
 
   isBoardBtnActionClicked: boolean = false;
   isEditBoardBtnClicked: boolean = false;
+  isDeleteBoardBtnClicked: boolean = false;
   boardNameInput!: string;
 
   ngOnInit() {
@@ -40,6 +41,7 @@ export class BoardBtnComponent implements OnInit, AfterViewChecked {
   @ViewChild('editBoardWrapper', { static: false })
   editBoardWrapper!: ElementRef;
   @ViewChild('editBoardInput') editBoardInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('deleteWrapper', { static: false }) deleteWrapper!: ElementRef;
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
@@ -49,6 +51,7 @@ export class BoardBtnComponent implements OnInit, AfterViewChecked {
       !this.actionWrapper.nativeElement.contains(target)
     ) {
       this.isBoardBtnActionClicked = false;
+      this.isEditBoardBtnClicked = false;
       this.boardNameInput = this.boardBtn.boardName;
     }
     if (
@@ -56,39 +59,47 @@ export class BoardBtnComponent implements OnInit, AfterViewChecked {
       !this.editBoardWrapper.nativeElement.contains(target)
     ) {
       this.toggleButtonState('closeEditBtn');
+    }
+    if (
+      this.deleteWrapper &&
+      !this.deleteWrapper.nativeElement.contains(target)
+    ) {
+      this.isDeleteBoardBtnClicked = false;
       this.isBoardBtnActionClicked = false;
     }
   }
 
-  setFocus() {
-    if (this.isEditBoardBtnClicked && this.editBoardInput) {
-      this.editBoardInput.nativeElement.focus();
-    }
-  }
-
-  ngAfterViewChecked() {
-    this.setFocus();
-  }
-
   toggleButtonState(
-    button: 'actionBtn' | 'editBtn' | 'closeEditBtn' | 'submitBtn'
+    button:
+      | 'actionBtn'
+      | 'editBtn'
+      | 'closeEditBtn'
+      | 'confirmEditBtn'
+      | 'deleteBtn'
+      | 'closeDeleteBtn'
   ) {
     if (button === 'actionBtn') {
       this.isBoardBtnActionClicked = !this.isBoardBtnActionClicked;
-      this.isEditBoardBtnClicked = false;
       this.boardNameInput = this.boardBtn.boardName;
     }
     if (button === 'editBtn') {
       this.isEditBoardBtnClicked = !this.isEditBoardBtnClicked;
     }
     if (button === 'closeEditBtn') {
-      this.isEditBoardBtnClicked = !this.isEditBoardBtnClicked;
+      this.isEditBoardBtnClicked = false;
       this.boardNameInput = this.boardBtn.boardName;
       this.isBoardBtnActionClicked = false;
     }
-    if (button === 'submitBtn') {
-      this.isEditBoardBtnClicked = !this.isEditBoardBtnClicked;
-      this.isBoardBtnActionClicked = !this.isBoardBtnActionClicked;
+    if (button === 'confirmEditBtn') {
+      this.isEditBoardBtnClicked = false;
+      this.isBoardBtnActionClicked = false;
+    }
+    if (button === 'deleteBtn') {
+      this.isDeleteBoardBtnClicked = true;
+    }
+    if (button === 'closeDeleteBtn') {
+      this.isDeleteBoardBtnClicked = false;
+      this.isBoardBtnActionClicked = false;
     }
   }
 
@@ -102,6 +113,16 @@ export class BoardBtnComponent implements OnInit, AfterViewChecked {
     this.boardBtn.boardUrl = this.boardNameInput
       .toLowerCase()
       .replace(/ /g, '-');
+  }
+
+  setFocus() {
+    if (this.isEditBoardBtnClicked && this.editBoardInput) {
+      this.editBoardInput.nativeElement.focus();
+    }
+  }
+
+  ngAfterViewChecked() {
+    this.setFocus();
   }
 
   onSubmitEdit(form: NgForm) {
