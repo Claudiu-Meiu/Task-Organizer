@@ -83,7 +83,7 @@ export class BoardBtnComponent implements OnInit, AfterViewChecked {
       this.boardNameInput = this.boardBtn.boardName;
     }
     if (button === 'editBtn') {
-      this.isEditBoardBtnClicked = !this.isEditBoardBtnClicked;
+      this.isEditBoardBtnClicked = true;
     }
     if (button === 'closeEditBtn') {
       this.isEditBoardBtnClicked = false;
@@ -103,16 +103,14 @@ export class BoardBtnComponent implements OnInit, AfterViewChecked {
     }
   }
 
-  onDeleteBoard() {
-    this.boardService.deleteBoard(this.boardBtn.id);
-    this.router.navigate([AppRoutes.Home]);
-  }
-
-  onEditBoard() {
-    this.boardBtn.boardName = this.boardNameInput;
-    this.boardBtn.boardUrl = this.boardNameInput
-      .toLowerCase()
-      .replace(/ /g, '-');
+  onSubmitEdit(form: NgForm) {
+    this.boardService.editBoard(this.boardBtn.id, this.boardNameInput);
+    this.router.navigate([
+      AppRoutes.Board,
+      this.boardBtn.id,
+      this.boardBtn.boardUrl,
+    ]);
+    this.boardNameInput = this.boardBtn.boardName;
   }
 
   setFocus() {
@@ -125,13 +123,7 @@ export class BoardBtnComponent implements OnInit, AfterViewChecked {
     this.setFocus();
   }
 
-  onSubmitEdit(form: NgForm) {
-    this.onEditBoard();
-    this.router.navigate([
-      AppRoutes.Board,
-      this.boardBtn.id,
-      this.boardBtn.boardUrl,
-    ]);
-    this.boardNameInput = this.boardBtn.boardName;
+  onDeleteBoard() {
+    this.boardService.deleteBoard(this.boardBtn.id);
   }
 }

@@ -21,7 +21,7 @@ export class BoardComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       const boardId = Number(params.get('id'));
       const boardUrl = params.get('boardUrl');
-      const selectedBoard = this.boardService.getBoardById(boardId)[0];
+      const selectedBoard = this.boardService.getBoardById(boardId);
       if (!selectedBoard || selectedBoard.boardUrl !== boardUrl) {
         this.router.navigate(['/not-found']);
       } else {

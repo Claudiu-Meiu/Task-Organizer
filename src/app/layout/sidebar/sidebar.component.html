@@ -12,7 +12,7 @@
   </header>
   <div class="sidebar-content">
     <ul>
-      @for (board of boardService.boards; track board.id) {
+      @for (board of boardService.BoardsArray; track board.id) {
       <li class="sidebar-item">
         <app-board-btn [boardBtn]="board" />
       </li>
