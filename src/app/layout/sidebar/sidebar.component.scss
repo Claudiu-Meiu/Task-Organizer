@@ -12,8 +12,8 @@
   color: $color-text-white;
   background-color: $color-bg;
   box-shadow: $box-shadow-h;
+  transition: $transition-fast;
   &:hover {
-    transition: $transition-fast;
     cursor: pointer;
     background-color: $color-btn-bg-hover-grey;
   }
@@ -35,9 +35,9 @@
       border: none;
       color: $color-text-white;
       background: none;
+      transition: $transition-fast;
       &:hover {
         cursor: pointer;
-        transition: $transition-fast;
         background-color: $color-btn-bg-hover-grey;
       }
       .pi-angle-double-left {
@@ -70,9 +70,9 @@
         background: none;
         box-shadow: $box-shadow-spread;
         width: 100%;
+        transition: $transition-fast;
         &:hover {
           cursor: pointer;
-          transition: $transition-fast;
           background-color: $color-btn-bg-hover-grey;
         }
       }
@@ -100,6 +100,7 @@
             color: $color-text-white;
           }
           .confirm-add-btn {
+            transition: $transition-fast;
             .pi-check {
               padding-top: 3px;
             }
@@ -108,17 +109,16 @@
               color: $color-disabled;
             }
             &:not(:disabled):hover {
-              transition: $transition-fast;
               color: $color-text-cyan;
               background-color: $color-btn-bg-hover;
             }
           }
           .close-add-btn {
+            transition: $transition-fast;
             .pi-times {
               padding-top: 3px;
             }
             &:hover {
-              transition: $transition-fast;
               background-color: $color-bg-danger;
               color: $color-text-danger;
             }

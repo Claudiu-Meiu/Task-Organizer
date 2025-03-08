@@ -1,7 +1,7 @@
 <div class="board-btn-wrapper">
   @if (isDeleteBoardBtnClicked) {
   <div class="delete-board-wrapper" #deleteWrapper>
-    <div><i class="pi pi-trash"></i> {{ boardBtn.boardName }}?</div>
+    <div><i class="pi pi-trash"></i> {{ boardBtn.boardName }}</div>
     <div class="deletion-action-btns-wrapper">
       <button class="confirm-board-deletion" (click)="onDeleteBoard()"><i class="pi pi-check"></i></button>
       <button class="cancel-board-deletion" (click)="toggleButtonState('closeDeleteBtn')"><i

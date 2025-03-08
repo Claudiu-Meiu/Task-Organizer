@@ -11,8 +11,8 @@
     font-size: $font-size-sm;
     color: $color-text-white;
     background-color: $color-btn-bg;
+    transition: $transition-fast;
     &:hover {
-      transition: $transition-fast;
       cursor: pointer;
       color: $color-text-cyan;
       background-color: $color-btn-bg-hover;
@@ -34,11 +34,11 @@
     .board-btn-action-btn {
       @include actionBtnSm();
       color: $color-text-white;
+      transition: $transition-fast;
       .pi-ellipsis-h {
         padding-top: 4px;
       }
       &:hover {
-        transition: $transition-fast;
         background-color: $color-btn-bg-hover;
       }
     }
@@ -52,21 +52,24 @@
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
     background-color: $color-btn-bg-active;
-    .edit-board,
+    .edit-board {
+      @include actionBtnSm();
+      color: $color-text-cyan;
+      transition: $transition-fast;
+    }
     .delete-board {
       @include actionBtnSm();
       color: $color-text-cyan;
-      .pi-pen-to-square,
-      .pi-trash {
-        padding-top: 3px;
-      }
+      transition: $transition-slow;
+    }
+    .pi-pen-to-square,
+    .pi-trash {
+      padding-top: 3px;
     }
     .edit-board:hover {
-      transition: $transition-fast;
       background-color: $color-btn-bg-active;
     }
     .delete-board:hover {
-      transition: $transition-slow;
       color: $color-text-danger;
       background-color: $color-bg-danger;
     }
@@ -99,6 +102,7 @@
           border-radius: $border-radius-sm;
         }
         .confirm-edit-btn {
+          transition: $transition-fast;
           .pi-check {
             padding-top: 3px;
           }
@@ -107,17 +111,15 @@
             color: $color-disabled;
           }
           &:not(:disabled):hover {
-            transition: $transition-fast;
             background-color: $color-btn-bg-hover;
           }
         }
         .close-edit-btn {
-          background: none;
+          transition: $transition-fast;
           .pi-times {
             padding-top: 3px;
           }
           &:hover {
-            transition: $transition-fast;
             color: $color-text-danger;
             background-color: $color-bg-danger;
           }
@@ -141,13 +143,17 @@
         @include actionBtnSm();
         color: $color-text-danger;
       }
-      .confirm-board-deletion:hover {
+      .confirm-board-deletion {
         transition: $transition-slow;
-        background-color: $color-bg-danger;
+        &:hover {
+          background-color: $color-bg-danger;
+        }
       }
-      .cancel-board-deletion:hover {
+      .cancel-board-deletion {
         transition: $transition-fast;
-        background-color: $color-btn-bg-hover-grey;
+        &:hover {
+          background-color: $color-btn-bg-hover-grey;
+        }
       }
       .pi-check,
       .pi-times {

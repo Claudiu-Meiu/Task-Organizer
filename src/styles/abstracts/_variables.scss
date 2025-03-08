@@ -6,7 +6,7 @@ $color-disabled: #f5f5f518;
 
 $color-bg: #111213;
 $color-bg-page: #161718;
-$color-bg-danger: #ff000034;
+$color-bg-danger: #ff00001d;
 
 $color-btn-bg: #222526;
 $color-btn-bg-active: #245b8b5d;
@@ -27,11 +27,11 @@ $box-shadow-h: 0.5px 0px 0px 0px $color-box-shadow;
 $box-shadow-v: 0px 0.5px 0px 0px $color-box-shadow;
 
 // Border Radius
-$border-radius-sm: 5px;
+$border-radius-sm: 10px;
 
 // Transition
-$transition-fast: ease 0.2s;
-$transition-slow: ease 0.5s;
+$transition-fast: all 250ms;
+$transition-slow: all 500ms;
 
 // Flex gap
 $flex-gap-sm: 10px;
