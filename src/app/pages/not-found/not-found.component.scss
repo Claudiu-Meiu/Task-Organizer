@@ -1,7 +1,7 @@
 @import '../../../styles/abstracts';
 
 .not-found-container {
-  @include flexCenter(column);
+  @include flex(column, center, center);
   height: 100vh;
   padding: 10px;
   .error-code {
@@ -18,7 +18,7 @@
     padding-bottom: 200px;
     text-align: center;
     a {
-      @include flexCenter(row);
+      @include flex(row, center, center);
       gap: $flex-gap-sm;
       padding: 10px;
       border-radius: $border-radius-sm;
@@ -27,7 +27,7 @@
       box-shadow: $box-shadow-spread;
       &:hover {
         transition: $transition-fast;
-        background-color: $color-btn-bg-hover-grey;
+        background-color: $color-btn-bg-light-grey;
       }
     }
   }

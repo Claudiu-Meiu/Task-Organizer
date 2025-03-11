@@ -1,12 +1,15 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { TasksComponent } from './tasks/tasks.component';
+
+import { AppRoutes } from '../../models/app-routes.enum';
 import { BoardService } from '../../services/board.service';
 
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [],
+  imports: [TasksComponent],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss',
 })
@@ -23,7 +26,7 @@ export class BoardComponent implements OnInit {
       const boardUrl = params.get('boardUrl');
       const selectedBoard = this.boardService.getBoardById(boardId);
       if (!selectedBoard || selectedBoard.boardUrl !== boardUrl) {
-        this.router.navigate(['/not-found']);
+        this.router.navigate([AppRoutes.NotFound]);
       } else {
         this.boardTitle = selectedBoard.boardName;
       }

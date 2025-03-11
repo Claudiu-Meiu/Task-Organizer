@@ -1,32 +1,37 @@
 // Color Variables
 $color-text-white: whitesmoke;
+$color-text-black: black;
 $color-text-cyan: #00eeff;
 $color-text-danger: #ff0000;
 $color-disabled: #f5f5f518;
 
 $color-bg: #111213;
 $color-bg-page: #161718;
-$color-bg-danger: #ff00001d;
 
-$color-btn-bg: #222526;
-$color-btn-bg-active: #245b8b5d;
-$color-btn-bg-hover: #245b8b91;
-$color-btn-bg-hover-grey: #22252677;
+$color-bg-danger: #601818;
+$color-bg-light-danger: #751e1e;
+$color-bg-dark-danger: #511313;
 
-$color-box-shadow: #cccccc25;
+$color-btn-bg-white: #e6e6e6;
+$color-btn-bg-grey: #282828;
+$color-btn-bg-light-grey: #494949;
+$color-btn-bg-dark-grey: #1a1a1a;
+
+$color-box-shadow: #2a2a2a;
 $color-box-shadow-danger: #ff0000;
 
 // Font Variables
 $font-size-sm: 14px;
-$font-size-lg: 18px;
+$font-size-md: 16px;
 
 // Box Shadow
-$box-shadow-spread: 0px 0px 0px 1px $color-box-shadow;
-$box-shadow-spread-danger: 0px 0px 0px 2px $color-box-shadow-danger;
+$box-shadow-spread: 0px 0px 0px 0.5px $color-box-shadow;
 $box-shadow-h: 0.5px 0px 0px 0px $color-box-shadow;
 $box-shadow-v: 0px 0.5px 0px 0px $color-box-shadow;
+$box-shadow-spread-danger: 0px 0px 0px 2px $color-box-shadow-danger;
 
 // Border Radius
+$border-radius-md: 20px;
 $border-radius-sm: 10px;
 
 // Transition
@@ -35,3 +40,4 @@ $transition-slow: all 500ms;
 
 // Flex gap
 $flex-gap-sm: 10px;
+$flex-gap-md: 20px;
