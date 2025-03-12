@@ -1,14 +1,13 @@
 // Color Variables
 $color-text-white: whitesmoke;
 $color-text-black: black;
-$color-text-cyan: #00eeff;
-$color-text-danger: #ff0000;
+$color-text-danger: red;
 $color-disabled: #f5f5f518;
 
 $color-bg: #111213;
 $color-bg-page: #161718;
 
-$color-bg-danger: #601818;
+$color-bg-danger: #341c1c;
 $color-bg-light-danger: #751e1e;
 $color-bg-dark-danger: #511313;
 
@@ -18,17 +17,23 @@ $color-btn-bg-light-grey: #494949;
 $color-btn-bg-dark-grey: #1a1a1a;
 
 $color-box-shadow: #2a2a2a;
-$color-box-shadow-danger: #ff0000;
+$color-box-shadow-danger: red;
+
+$color-border: #313131;
 
 // Font Variables
 $font-size-sm: 14px;
 $font-size-md: 16px;
+$font-size-lg: 18px;
 
 // Box Shadow
-$box-shadow-spread: 0px 0px 0px 0.5px $color-box-shadow;
-$box-shadow-h: 0.5px 0px 0px 0px $color-box-shadow;
-$box-shadow-v: 0px 0.5px 0px 0px $color-box-shadow;
-$box-shadow-spread-danger: 0px 0px 0px 2px $color-box-shadow-danger;
+$box-shadow-spread: 0px 0px 0px 1px $color-box-shadow;
+$box-shadow-top: 0px -1px 0px 0px $color-box-shadow;
+$box-shadow-bottom: 0px 1px 0px 0px $color-box-shadow;
+$box-shadow-left: -1px 0px 0px 0px $color-box-shadow;
+$box-shadow-right: 1px 0px 0px 0px $color-box-shadow;
+
+$box-shadow-spread-danger: 0px 0px 0px 1px $color-box-shadow-danger;
 
 // Border Radius
 $border-radius-md: 20px;

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, Input, input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { TasksComponent } from './tasks/tasks.component';
@@ -18,13 +18,14 @@ export class BoardComponent implements OnInit {
   route: ActivatedRoute = inject(ActivatedRoute);
   boardService = inject(BoardService);
 
+  boardId!: number;
   boardTitle!: string;
 
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
-      const boardId = Number(params.get('id'));
+      this.boardId = Number(params.get('id'));
       const boardUrl = params.get('boardUrl');
-      const selectedBoard = this.boardService.getBoardById(boardId);
+      const selectedBoard = this.boardService.getBoardById(this.boardId);
       if (!selectedBoard || selectedBoard.boardUrl !== boardUrl) {
         this.router.navigate([AppRoutes.NotFound]);
       } else {

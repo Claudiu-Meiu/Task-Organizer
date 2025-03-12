@@ -27,7 +27,7 @@
       border-bottom-right-radius: 0px;
     }
     .board-btn-action-btn {
-      @include actionBtnSm();
+      @include actionBtn(10px 14px);
       color: $color-text-white;
       transition: $transition-fast;
       .pi-ellipsis-h {
@@ -51,12 +51,12 @@
     border-bottom-left-radius: 0px;
     background-color: $color-btn-bg-light-grey;
     .edit-board {
-      @include actionBtnSm();
+      @include actionBtn(10px 14px);
       color: $color-text-white;
       transition: $transition-fast;
     }
     .delete-board {
-      @include actionBtnSm();
+      @include actionBtn(10px 14px);
       color: $color-text-white;
       transition: $transition-slow;
     }
@@ -93,7 +93,7 @@
         @include flex(row, center, center);
         gap: $flex-gap-sm;
         button {
-          @include actionBtnSm();
+          @include actionBtn(10px 14px);
           color: $color-text-white;
         }
         .confirm-edit-btn {
@@ -135,7 +135,7 @@
       @include flex(row, center, center);
       gap: $flex-gap-sm;
       button {
-        @include actionBtnSm();
+        @include actionBtn(10px 14px);
         color: $color-text-danger;
       }
       .confirm-board-deletion {

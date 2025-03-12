@@ -13,23 +13,88 @@
     box-shadow: $box-shadow-spread;
     .tasks-toolbar {
       @include flex(row, space-between, center);
-      box-shadow: $box-shadow-v;
       .tasks-toolbar-item {
         @include flex(row, flex-start, center);
         gap: $flex-gap-sm;
-        .add-task-btn {
-          cursor: pointer;
+        .toolbar-task-btn {
+          @include actionBtn(14px);
           @include flex(row, flex-start, center);
           gap: $flex-gap-sm;
-          padding: 14px;
           color: $color-text-white;
           background: $color-btn-bg-grey;
-          border: none;
-          border-radius: $border-radius-md;
           transition: $transition-fast;
           &:hover {
             background-color: $color-btn-bg-light-grey;
           }
+        }
+      }
+    }
+    .tasks-content {
+      height: 80vh;
+      overflow-y: auto;
+      box-shadow: $box-shadow-top;
+      table {
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+        th,
+        td {
+          padding: 10px;
+        }
+        td {
+          max-width: 450px;
+          border-top: 1px solid $color-border;
+          border-bottom: 1px solid $color-border;
+          border-left: 1px solid $color-border;
+          border-right: 1px solid $color-border;
+          background-color: $color-bg-page;
+          &:first-child {
+            border-left: none;
+          }
+          &:last-child {
+            border-right: none;
+          }
+        }
+        .estimation-td,
+        .status-td,
+        .action-btns-td {
+          text-align: center;
+        }
+        .task-status {
+          @include flex(row, center, center);
+          gap: $flex-gap-sm;
+          .task-status-btn {
+            @include actionBtn(0px);
+            font-size: $font-size-lg;
+            color: $color-text-white;
+            transition: $transition-slow;
+            &:hover {
+              color: greenyellow;
+            }
+          }
+        }
+        .task-action-btns {
+          @include flex(row, center, center);
+          gap: $flex-gap-sm;
+          .task-edit-btn,
+          .task-delete-btn {
+            @include actionBtn(10px 12px);
+            color: $color-text-white;
+          }
+          .task-edit-btn {
+            transition: $transition-slow;
+            &:hover {
+              background-color: $color-btn-bg-light-grey;
+            }
+          }
+        }
+        .high {
+          @include flex(row, center, center);
+          border-radius: $border-radius-sm;
+          gap: $flex-gap-sm;
+          color: #ff3535;
+          background-color: #221717;
         }
       }
     }

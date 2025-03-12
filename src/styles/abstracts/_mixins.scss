@@ -5,9 +5,9 @@
   align-items: $align-items;
 }
 
-@mixin actionBtnSm() {
+@mixin actionBtn($padding) {
   cursor: pointer;
-  padding: 10px 14px;
+  padding: $padding;
   border-radius: $border-radius-md;
   border: none;
   background: none;

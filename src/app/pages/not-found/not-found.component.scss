@@ -18,15 +18,15 @@
     padding-bottom: 200px;
     text-align: center;
     a {
+      text-decoration: none;
       @include flex(row, center, center);
       gap: $flex-gap-sm;
       padding: 10px;
       border-radius: $border-radius-sm;
-      text-decoration: none;
       color: $color-text-white;
-      box-shadow: $box-shadow-spread;
+      background-color: $color-btn-bg-grey;
+      transition: $transition-fast;
       &:hover {
-        transition: $transition-fast;
         background-color: $color-btn-bg-light-grey;
       }
     }

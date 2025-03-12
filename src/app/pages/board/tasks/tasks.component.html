@@ -6,10 +6,49 @@
                 <h4>Tasks</h4>
             </div>
             <div class="tasks-toolbar-item">
-                <button class="add-task-btn"><i class="pi pi-search"></i></button>
-                <button class="add-task-btn"><i class="pi pi-filter-fill"></i></button>
-                <button class="add-task-btn"><i class="pi pi-plus"></i></button>
+                <button class="toolbar-task-btn"><i class="pi pi-search"></i></button>
+                <button class="toolbar-task-btn"><i class="pi pi-filter-fill"></i></button>
+                <button class="toolbar-task-btn"><i class="pi pi-plus"></i> New Task</button>
             </div>
+        </div>
+        <div class="tasks-content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Due Date</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (task of selectedBoardTasks; track task) {
+                    <tr>
+                        <td class="task-name-td">{{ task.taskName }}</td>
+                        <td>{{ task.description }}</td>
+                        <td class="estimation-td">Friday, May 31, 2025</td>
+                        <td>
+                            <div class="high"><i class="pi pi-circle-fill"></i>
+                                <p>High</p>
+                            </div>
+                        </td>
+                        <td class="status-td">
+                            <div class="task-status">
+                                <button class="task-status-btn"><i class="pi pi-circle"></i></button>
+                                <div>In progress</div>
+                            </div>
+                        </td>
+                        <td class="action-btns-td">
+                            <div class="task-action-btns">
+                                <button class="task-edit-btn"><i class="pi pi-pen-to-square"></i></button>
+                                <button class="task-delete-btn"><i class="pi pi-trash"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

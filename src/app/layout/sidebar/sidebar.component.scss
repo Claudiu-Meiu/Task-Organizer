@@ -12,7 +12,7 @@
   font-size: $font-size-md;
   color: $color-text-white;
   background-color: $color-bg;
-  box-shadow: $box-shadow-h;
+  box-shadow: $box-shadow-right;
   transition: $transition-fast;
   &:hover {
     cursor: pointer;
@@ -25,11 +25,11 @@
   width: 22%;
   margin-right: 40px;
   background-color: $color-bg;
-  box-shadow: $box-shadow-h;
+  box-shadow: $box-shadow-right;
   .header {
     @include flex(row, space-between, center);
     padding: 10px;
-    box-shadow: $box-shadow-v;
+    box-shadow: $box-shadow-bottom;
     .sidebar-close-btn {
       padding: 20px;
       border-radius: $border-radius-sm;
@@ -96,7 +96,7 @@
           @include flex(row, center, center);
           gap: $flex-gap-sm;
           button {
-            @include actionBtnSm();
+            @include actionBtn(10px 14px);
             color: $color-text-white;
           }
           .confirm-add-btn {
