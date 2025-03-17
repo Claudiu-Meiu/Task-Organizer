@@ -4,11 +4,14 @@ import { Router } from '@angular/router';
 import { type Board } from '../models/board.model';
 import { AppRoutes } from '../models/app-routes.enum';
 
+import { TasksService } from './tasks.service';
+
 @Injectable({
   providedIn: 'root',
 })
 export class BoardService {
   router = inject(Router);
+  tasksService = inject(TasksService);
 
   BoardsArray: Board[] = this.getBoardsFromLocalStorage();
   existingIds!: Set<number>;
@@ -49,6 +52,9 @@ export class BoardService {
   }
 
   removeBoard(boardBtnId: number) {
+    const tasksToRemove = this.tasksService.getBoardTasks(boardBtnId);
+    tasksToRemove.forEach((task) => this.tasksService.removeTask(task.id));
+
     this.BoardsArray = this.BoardsArray.filter(
       (board) => board.id !== boardBtnId
     );
