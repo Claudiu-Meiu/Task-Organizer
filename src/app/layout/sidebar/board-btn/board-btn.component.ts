@@ -25,16 +25,17 @@ import { BoardService } from '../../../services/board.service';
 })
 export class BoardBtnComponent implements OnInit, AfterViewChecked {
   @Input({ required: true }) boardBtn!: Board;
+
   boardService = inject(BoardService);
   router: Router = inject(Router);
 
   isBoardBtnActionClicked: boolean = false;
   isEditBoardBtnClicked: boolean = false;
   isDeleteBoardBtnClicked: boolean = false;
-  boardNameInput!: string;
+  enteredBoardName!: string;
 
   ngOnInit() {
-    this.boardNameInput = this.boardBtn.boardName;
+    this.enteredBoardName = this.boardBtn.boardName;
   }
 
   @ViewChild('actionWrapper', { static: false }) actionWrapper!: ElementRef;
@@ -52,7 +53,7 @@ export class BoardBtnComponent implements OnInit, AfterViewChecked {
     ) {
       this.isBoardBtnActionClicked = false;
       this.isEditBoardBtnClicked = false;
-      this.boardNameInput = this.boardBtn.boardName;
+      this.enteredBoardName = this.boardBtn.boardName;
     }
     if (
       this.editBoardWrapper &&
@@ -80,14 +81,14 @@ export class BoardBtnComponent implements OnInit, AfterViewChecked {
   ) {
     if (button === 'actionBtn') {
       this.isBoardBtnActionClicked = !this.isBoardBtnActionClicked;
-      this.boardNameInput = this.boardBtn.boardName;
+      this.enteredBoardName = this.boardBtn.boardName;
     }
     if (button === 'editBtn') {
       this.isEditBoardBtnClicked = true;
     }
     if (button === 'closeEditBtn') {
       this.isEditBoardBtnClicked = false;
-      this.boardNameInput = this.boardBtn.boardName;
+      this.enteredBoardName = this.boardBtn.boardName;
       this.isBoardBtnActionClicked = false;
     }
     if (button === 'confirmEditBtn') {
@@ -104,13 +105,13 @@ export class BoardBtnComponent implements OnInit, AfterViewChecked {
   }
 
   onSubmitEdit(form: NgForm) {
-    this.boardService.editBoard(this.boardBtn.id, this.boardNameInput);
+    this.boardService.editBoard(this.boardBtn.id, this.enteredBoardName);
     this.router.navigate([
       AppRoutes.Board,
       this.boardBtn.id,
       this.boardBtn.boardUrl,
     ]);
-    this.boardNameInput = this.boardBtn.boardName;
+    this.enteredBoardName = this.boardBtn.boardName;
   }
 
   setFocus() {
@@ -123,7 +124,7 @@ export class BoardBtnComponent implements OnInit, AfterViewChecked {
     this.setFocus();
   }
 
-  onDeleteBoard() {
-    this.boardService.deleteBoard(this.boardBtn.id);
+  onRemoveBoard() {
+    this.boardService.removeBoard(this.boardBtn.id);
   }
 }

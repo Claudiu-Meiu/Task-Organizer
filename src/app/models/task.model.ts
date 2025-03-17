@@ -1,6 +1,13 @@
 export interface Task {
   id: number;
   boardId: number;
-  taskName: string;
   description: string;
+  dueDate: string;
+  priority: string;
+}
+
+export interface addTaskData {
+  description: string;
+  dueDate: string;
+  priority: string;
 }

@@ -33,15 +33,15 @@ $box-shadow-bottom: 0px 1px 0px 0px $color-box-shadow;
 $box-shadow-left: -1px 0px 0px 0px $color-box-shadow;
 $box-shadow-right: 1px 0px 0px 0px $color-box-shadow;
 
-$box-shadow-spread-danger: 0px 0px 0px 1px $color-box-shadow-danger;
+$box-shadow-spread-danger: 0px 0px 0px 2px $color-box-shadow-danger;
 
 // Border Radius
 $border-radius-md: 20px;
 $border-radius-sm: 10px;
 
 // Transition
-$transition-fast: all 250ms;
-$transition-slow: all 500ms;
+$transition-fast: all 150ms;
+$transition-slow: all 300ms;
 
 // Flex gap
 $flex-gap-sm: 10px;

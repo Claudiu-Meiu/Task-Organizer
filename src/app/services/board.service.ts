@@ -48,7 +48,7 @@ export class BoardService {
     }
   }
 
-  deleteBoard(boardBtnId: number) {
+  removeBoard(boardBtnId: number) {
     this.BoardsArray = this.BoardsArray.filter(
       (board) => board.id !== boardBtnId
     );

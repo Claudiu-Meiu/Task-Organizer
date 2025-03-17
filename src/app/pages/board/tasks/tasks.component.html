@@ -1,21 +1,100 @@
+@if (isAddTaskBtnClicked) {
+<div class="task-backdrop" (click)="onCloseAddTask(); addTaskForm.resetForm()"></div>
+<dialog class="task-dialog" open>
+    <button class="task-dialog-close-btn" type="button" (click)="onCloseAddTask(); addTaskForm.resetForm()"><i
+            class="pi pi-times"></i></button>
+    <h4>Create a new task</h4>
+    <form class="task-dialog-form" #addTaskForm="ngForm" (ngSubmit)="onSubmitAddTask(addTaskForm)">
+        <div class="task-form-item">
+            <label for="description">Description</label>
+            <textarea id="summary" rows="3" name="description" [(ngModel)]="addTaskEnteredDescription"
+                required></textarea>
+        </div>
+
+        <div class="task-form-item">
+            <label for="due-date">Due Date</label>
+            <input type="date" id="due-date" name="due-date" [(ngModel)]="addTaskEnteredDueDate" required />
+        </div>
+
+        <div class="task-form-item">
+            <div class="task-form-high-priority" type="button"
+                (click)="addTaskEnteredPriority = 'High'; toggleHighPriorityBtnActive()"
+                [ngClass]="{'active': isHighPriorityBtnActive}"><i class="pi pi-circle-fill"></i> High</div>
+            <div class="task-form-medium-priority" type="button"
+                (click)="addTaskEnteredPriority = 'Medium'; toggleMediumPriorityBtnActive()"
+                [ngClass]="{'active': isMediumPriorityBtnActive}"><i class="pi pi-circle-fill"></i>
+                Medium
+            </div>
+            <div class="task-form-low-priority" type="button"
+                (click)="addTaskEnteredPriority = 'Low'; toggleLowPriorityBtnActive()"
+                [ngClass]="{'active': isLowPriorityBtnActive}"><i class="pi pi-circle-fill"></i>
+                Low</div>
+        </div>
+
+        <button class="task-submit-btn" type="submit"
+            [disabled]="addTaskForm.invalid || !addTaskEnteredPriority">Create</button>
+    </form>
+</dialog>
+}
+
 <div class="tasks-wrapper">
     <div class="tasks-container">
         <div class="tasks-toolbar">
             <div class="tasks-toolbar-item">
-                <i class="pi pi-list"></i>
                 <h4>Tasks</h4>
             </div>
             <div class="tasks-toolbar-item">
                 <button class="toolbar-task-btn"><i class="pi pi-search"></i></button>
                 <button class="toolbar-task-btn"><i class="pi pi-filter-fill"></i></button>
-                <button class="toolbar-task-btn"><i class="pi pi-plus"></i> New Task</button>
+                <button class="toolbar-task-btn toolbar-add-task-btn" (click)="onAddTask()"><i
+                        class="pi pi-plus"></i></button>
             </div>
         </div>
         <div class="tasks-content">
+            @if (selectedBoardTasks.length === 0) {
+            <p>No Tasks</p>
+            } @else {
+            @if (isEditTaskBtnClicked) {
+            <div class="task-backdrop" (click)="onCloseEditTask()"></div>
+            <dialog class="task-dialog" open>
+                <button class="task-dialog-close-btn" type="button" (click)="onCloseEditTask()"><i
+                        class="pi pi-times"></i></button>
+                <h4 class="task-dialog-header">Edit task</h4>
+                <form class="task-dialog-form" #editTaskForm="ngForm" (ngSubmit)="onSubmitEditTask(editTaskForm)">
+                    <div class="task-form-item">
+                        <label for="description">Description</label>
+                        <textarea rows="3" name="description" [(ngModel)]="editTaskEnteredDescription"
+                            required></textarea>
+                    </div>
+
+                    <div class="task-form-item">
+                        <label for="due-date">Due Date</label>
+                        <input type="date" id="due-date" name="due-date" [(ngModel)]="editTaskEnteredDueDate"
+                            required />
+                    </div>
+
+                    <div class="task-form-item">
+                        <div class="task-form-high-priority" type="button"
+                            (click)="editTaskEnteredPriority = 'High'; toggleHighPriorityBtnActive()"
+                            [class.active]="isHighPriorityBtnActive">
+                            <i class="pi pi-circle-fill"></i> High
+                        </div>
+                        <div class="task-form-medium-priority" type="button"
+                            (click)="editTaskEnteredPriority = 'Medium'; toggleMediumPriorityBtnActive()"
+                            [class.active]="isMediumPriorityBtnActive"><i class="pi pi-circle-fill"></i> Medium
+                        </div>
+                        <div class="task-form-low-priority" type="button"
+                            (click)="editTaskEnteredPriority = 'Low'; toggleLowPriorityBtnActive()"
+                            [class.active]="isLowPriorityBtnActive"><i class="pi pi-circle-fill"></i> Low</div>
+                    </div>
+
+                    <button class="task-submit-btn" type="submit" [disabled]="editTaskForm.invalid">Save</button>
+                </form>
+            </dialog>
+            }
             <table>
                 <thead>
                     <tr>
-                        <th>Title</th>
                         <th>Description</th>
                         <th>Due Date</th>
                         <th>Priority</th>
@@ -25,30 +104,39 @@
                 <tbody>
                     @for (task of selectedBoardTasks; track task) {
                     <tr>
-                        <td class="task-name-td">{{ task.taskName }}</td>
                         <td>{{ task.description }}</td>
-                        <td class="estimation-td">Friday, May 31, 2025</td>
-                        <td>
-                            <div class="high"><i class="pi pi-circle-fill"></i>
-                                <p>High</p>
+                        <td class="estimation-td">{{ task.dueDate | date:'dd.MM.yyyy' }}</td>
+                        <td class="priority-td">
+                            <div [ngClass]="{
+                                'low-priority': task.priority === 'Low',
+                                'medium-priority': task.priority === 'Medium',
+                                'high-priority': task.priority === 'High'
+                                  }">
+                                <i class="pi pi-circle-fill"></i>{{ task.priority }}
                             </div>
                         </td>
                         <td class="status-td">
                             <div class="task-status">
-                                <button class="task-status-btn"><i class="pi pi-circle"></i></button>
+                                <button class="task-status-btn">
+                                    <i class="pi pi-stop"></i>
+                                </button>
                                 <div>In progress</div>
                             </div>
                         </td>
                         <td class="action-btns-td">
                             <div class="task-action-btns">
-                                <button class="task-edit-btn"><i class="pi pi-pen-to-square"></i></button>
-                                <button class="task-delete-btn"><i class="pi pi-trash"></i></button>
+                                <button class="task-edit-btn" (click)="onEditTask(task)"><i
+                                        class="pi pi-pen-to-square"></i></button>
+                                <button class="task-delete-btn" (click)="onRemoveTask(task)"><i
+                                        class="pi pi-trash"></i></button>
                             </div>
                         </td>
                     </tr>
                     }
                 </tbody>
             </table>
+            }
+
         </div>
     </div>
 </div>

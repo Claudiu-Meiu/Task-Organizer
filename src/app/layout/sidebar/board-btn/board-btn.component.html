@@ -1,9 +1,9 @@
 <div class="board-btn-wrapper">
   @if (isDeleteBoardBtnClicked) {
   <div class="delete-board-wrapper" #deleteWrapper>
-    <div><i class="pi pi-trash"></i> {{ boardBtn.boardName }}</div>
+    <div><i class="pi pi-trash"></i> <b> {{ boardBtn.boardName }}</b></div>
     <div class="deletion-action-btns-wrapper">
-      <button class="confirm-board-deletion" (click)="onDeleteBoard()"><i class="pi pi-check"></i></button>
+      <button class="confirm-board-deletion" (click)="onRemoveBoard()"><i class="pi pi-check"></i></button>
       <button class="cancel-board-deletion" (click)="toggleButtonState('closeDeleteBtn')"><i
           class="pi pi-times"></i></button>
     </div>
@@ -13,8 +13,7 @@
   <div class="edit-board-wrapper" #editBoardWrapper>
     <form #editBoardForm="ngForm" (ngSubmit)="onSubmitEdit(editBoardForm)">
       <div class="edit-board-form-content">
-        <input #editBoardInput id="boardNameInput" [(ngModel)]="boardNameInput" name="boardNameInput" type="text"
-          required>
+        <input #editBoardInput [(ngModel)]="enteredBoardName" name="enteredBoardName" type="text" required>
         <div class="edit-board-form-btns">
           <button class="confirm-edit-btn" type="submit" [disabled]="!editBoardForm.valid"
             (click)="toggleButtonState('confirmEditBtn')"><i class="pi pi-check"></i></button>

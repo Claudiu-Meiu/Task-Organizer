@@ -27,7 +27,7 @@
       border-bottom-right-radius: 0px;
     }
     .board-btn-action-btn {
-      @include actionBtn(10px 14px);
+      @include actionBtn(10px 13px);
       color: $color-text-white;
       transition: $transition-fast;
       .pi-ellipsis-h {
@@ -51,12 +51,12 @@
     border-bottom-left-radius: 0px;
     background-color: $color-btn-bg-light-grey;
     .edit-board {
-      @include actionBtn(10px 14px);
+      @include actionBtn(10px 13px);
       color: $color-text-white;
       transition: $transition-fast;
     }
     .delete-board {
-      @include actionBtn(10px 14px);
+      @include actionBtn(10px 13px);
       color: $color-text-white;
       transition: $transition-slow;
     }
@@ -68,8 +68,7 @@
       background-color: $color-btn-bg-grey;
     }
     .delete-board:hover {
-      color: $color-text-danger;
-      background-color: $color-bg-danger;
+      background-color: $color-bg-light-danger;
     }
   }
 
@@ -93,7 +92,7 @@
         @include flex(row, center, center);
         gap: $flex-gap-sm;
         button {
-          @include actionBtn(10px 14px);
+          @include actionBtn(10px 13px);
           color: $color-text-white;
         }
         .confirm-edit-btn {
@@ -129,25 +128,26 @@
     padding: 10.5px;
     border-radius: $border-radius-sm;
     font-size: $font-size-sm;
-    color: $color-text-danger;
-    background-color: $color-bg-danger;
+    color: $color-text-white;
+    background-color: $color-bg-light-danger;
     .deletion-action-btns-wrapper {
       @include flex(row, center, center);
       gap: $flex-gap-sm;
       button {
-        @include actionBtn(10px 14px);
-        color: $color-text-danger;
+        @include actionBtn(10px 13px);
+        color: $color-text-white;
       }
       .confirm-board-deletion {
         transition: $transition-slow;
         &:hover {
-          background-color: $color-bg-light-danger;
+          color: $color-text-danger;
+          background-color: $color-bg-dark-danger;
         }
       }
       .cancel-board-deletion {
         transition: $transition-fast;
         &:hover {
-          background-color: $color-bg-dark-danger;
+          background-color: $color-btn-bg-grey;
         }
       }
       .pi-check,
