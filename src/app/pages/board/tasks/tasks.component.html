@@ -1,14 +1,14 @@
-@if (isAddTaskBtnClicked) {
-<div class="task-backdrop" (click)="onCloseAddTask(); addTaskForm.resetForm()"></div>
-<dialog class="task-dialog" open>
-    <button class="task-dialog-close-btn" type="button" (click)="onCloseAddTask(); addTaskForm.resetForm()"><i
-            class="pi pi-times"></i></button>
+@if (buttonStates.isAddTaskBtnClicked) {
+<div class="backdrop" (click)="toggleButtonState('closeAddTaskBtn'); addTaskForm.resetForm()"></div>
+<dialog open>
+    <button class="task-dialog-close-btn" type="button"
+        (click)="toggleButtonState('closeAddTaskBtn'); addTaskForm.resetForm()"><i class="pi pi-times"></i></button>
     <h4>Create a new task</h4>
     <form class="task-dialog-form" #addTaskForm="ngForm" (ngSubmit)="onSubmitAddTask(addTaskForm)">
         <div class="task-form-item">
             <label for="description">Description</label>
-            <textarea id="summary" rows="3" name="description" [(ngModel)]="addTaskEnteredDescription"
-                required></textarea>
+            <textarea #addTaskDescriptionInput id="summary" rows="3" name="description"
+                [(ngModel)]="addTaskEnteredDescription" required></textarea>
         </div>
 
         <div class="task-form-item">
@@ -18,16 +18,16 @@
 
         <div class="task-form-item">
             <div class="task-form-high-priority" type="button"
-                (click)="addTaskEnteredPriority = 'High'; toggleHighPriorityBtnActive()"
-                [ngClass]="{'active': isHighPriorityBtnActive}"><i class="pi pi-circle-fill"></i> High</div>
+                (click)="addTaskEnteredPriority = 'High'; toggleButtonState('toggleHighPriorityBtnActive')"
+                [ngClass]="{'active': buttonStates.taskPriority.high}"><i class="pi pi-bullseye"></i> High</div>
             <div class="task-form-medium-priority" type="button"
-                (click)="addTaskEnteredPriority = 'Medium'; toggleMediumPriorityBtnActive()"
-                [ngClass]="{'active': isMediumPriorityBtnActive}"><i class="pi pi-circle-fill"></i>
+                (click)="addTaskEnteredPriority = 'Medium'; toggleButtonState('toggleMediumPriorityBtnActive')"
+                [ngClass]="{'active': buttonStates.taskPriority.medium}"><i class="pi pi-bullseye"></i>
                 Medium
             </div>
             <div class="task-form-low-priority" type="button"
-                (click)="addTaskEnteredPriority = 'Low'; toggleLowPriorityBtnActive()"
-                [ngClass]="{'active': isLowPriorityBtnActive}"><i class="pi pi-circle-fill"></i>
+                (click)="addTaskEnteredPriority = 'Low'; toggleButtonState('toggleLowPriorityBtnActive')"
+                [ngClass]="{'active': buttonStates.taskPriority.low}"><i class="pi pi-bullseye"></i>
                 Low</div>
         </div>
 
@@ -41,30 +41,70 @@
     <div class="tasks-container">
         <div class="tasks-toolbar">
             <div class="tasks-toolbar-item">
-                <h4>Tasks</h4>
+
             </div>
             <div class="tasks-toolbar-item">
-                <button class="toolbar-task-btn"><i class="pi pi-search"></i></button>
-                <button class="toolbar-task-btn"><i class="pi pi-filter-fill"></i></button>
-                <button class="toolbar-task-btn toolbar-add-task-btn" (click)="onAddTask()"><i
+                <button class="toolbar-task-btn" (click)="toggleButtonState('toggleFilter')"><i
+                        class="pi pi-filter-fill"></i></button>
+                @if (buttonStates.isFilterTasksBtnClicked) {
+                <div class="backdrop" (click)="toggleButtonState('toggleFilter')"></div>
+                <dialog open>
+                    <button class="task-dialog-close-btn" type="button" (click)="toggleButtonState('toggleFilter')">
+                        <i class="pi pi-times"></i>
+                    </button>
+                    <h4>Filter tasks</h4>
+                    <div class="filter-tasks-wrapper">
+                        <div class="filter-tasks-content">
+                            <div>By status:</div>
+                            <div class="filter-tasks-content-group">
+                                <label>
+                                    <input type="checkbox" name="status" (change)="setStatusFilter('In progress')"
+                                        [checked]="selectedStatus.has('In progress')" /> In progress
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="status" (change)="setStatusFilter('Finished')"
+                                        [checked]="selectedStatus.has('Finished')" /> Finished
+                                </label>
+                            </div>
+                        </div>
+                        <div class="filter-tasks-content">
+                            <div>By priority:</div>
+                            <div class="filter-tasks-content-group">
+                                <label>
+                                    <input type="checkbox" (change)="setPriorityFilter('High')"
+                                        [checked]="selectedPriorities.has('High')" /> High
+                                </label>
+                                <label>
+                                    <input type="checkbox" (change)="setPriorityFilter('Medium')"
+                                        [checked]="selectedPriorities.has('Medium')" /> Medium
+                                </label>
+                                <label>
+                                    <input type="checkbox" (change)="setPriorityFilter('Low')"
+                                        [checked]="selectedPriorities.has('Low')" /> Low
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </dialog>
+                }
+
+                <button class="toolbar-task-btn toolbar-add-task-btn" (click)="toggleButtonState('addTaskBtn')"><i
                         class="pi pi-plus"></i></button>
             </div>
         </div>
         <div class="tasks-content">
-            @if (selectedBoardTasks.length === 0) {
-            <p>No Tasks</p>
-            } @else {
-            @if (isEditTaskBtnClicked) {
-            <div class="task-backdrop" (click)="onCloseEditTask()"></div>
-            <dialog class="task-dialog" open>
-                <button class="task-dialog-close-btn" type="button" (click)="onCloseEditTask()"><i
+
+            @if (buttonStates.isEditTaskBtnClicked) {
+            <div class="backdrop" (click)="toggleButtonState('closeEditTaskBtn')"></div>
+            <dialog open>
+                <button class="task-dialog-close-btn" type="button" (click)="toggleButtonState('closeEditTaskBtn')"><i
                         class="pi pi-times"></i></button>
                 <h4 class="task-dialog-header">Edit task</h4>
                 <form class="task-dialog-form" #editTaskForm="ngForm" (ngSubmit)="onSubmitEditTask(editTaskForm)">
                     <div class="task-form-item">
                         <label for="description">Description</label>
-                        <textarea rows="3" name="description" [(ngModel)]="editTaskEnteredDescription"
-                            required></textarea>
+                        <textarea #editTaskDescriptionInput rows="3" name="description"
+                            [(ngModel)]="editTaskEnteredDescription" required></textarea>
                     </div>
 
                     <div class="task-form-item">
@@ -75,23 +115,26 @@
 
                     <div class="task-form-item">
                         <div class="task-form-high-priority" type="button"
-                            (click)="editTaskEnteredPriority = 'High'; toggleHighPriorityBtnActive()"
-                            [class.active]="isHighPriorityBtnActive">
-                            <i class="pi pi-circle-fill"></i> High
+                            (click)="editTaskEnteredPriority = 'High'; toggleButtonState('toggleHighPriorityBtnActive')"
+                            [class.active]="buttonStates.taskPriority.high">
+                            <i class="pi pi-bullseye"></i> High
                         </div>
                         <div class="task-form-medium-priority" type="button"
-                            (click)="editTaskEnteredPriority = 'Medium'; toggleMediumPriorityBtnActive()"
-                            [class.active]="isMediumPriorityBtnActive"><i class="pi pi-circle-fill"></i> Medium
+                            (click)="editTaskEnteredPriority = 'Medium'; toggleButtonState('toggleMediumPriorityBtnActive')"
+                            [class.active]="buttonStates.taskPriority.medium"><i class="pi pi-bullseye"></i> Medium
                         </div>
                         <div class="task-form-low-priority" type="button"
-                            (click)="editTaskEnteredPriority = 'Low'; toggleLowPriorityBtnActive()"
-                            [class.active]="isLowPriorityBtnActive"><i class="pi pi-circle-fill"></i> Low</div>
+                            (click)="editTaskEnteredPriority = 'Low'; toggleButtonState('toggleLowPriorityBtnActive')"
+                            [class.active]="buttonStates.taskPriority.low"><i class="pi pi-bullseye"></i> Low</div>
                     </div>
 
                     <button class="task-submit-btn" type="submit" [disabled]="editTaskForm.invalid">Save</button>
                 </form>
             </dialog>
             }
+            @if (filteredTasks.length === 0) {
+            <p>No tasks available. Consider adding a new task or modifying your filters.</p>
+            } @else {
             <table>
                 <thead>
                     <tr>
@@ -102,33 +145,45 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @for (task of selectedBoardTasks; track task) {
+                    @for (task of filteredTasks; track task) {
                     <tr>
                         <td>{{ task.description }}</td>
                         <td class="estimation-td">{{ task.dueDate | date:'dd.MM.yyyy' }}</td>
                         <td class="priority-td">
                             <div [ngClass]="{
-                                'low-priority': task.priority === 'Low',
-                                'medium-priority': task.priority === 'Medium',
-                                'high-priority': task.priority === 'High'
-                                  }">
-                                <i class="pi pi-circle-fill"></i>{{ task.priority }}
+                                    'low-priority': task.priority === 'Low',
+                                    'medium-priority': task.priority === 'Medium',
+                                    'high-priority': task.priority === 'High'
+                                      }">
+                                <i class="pi pi-bullseye"></i>{{ task.priority }}
                             </div>
                         </td>
                         <td class="status-td">
                             <div class="task-status">
-                                <button class="task-status-btn">
-                                    <i class="pi pi-stop"></i>
+                                <button [ngClass]="{'task-status-btn': true, 'finished': task.finished}"
+                                    (click)="onSetTaskStatus(task)">
+                                    <i [ngClass]="task.finished ? 'pi pi-check-square' : 'pi pi-stop'"></i>
                                 </button>
-                                <div>In progress</div>
+                                <div>{{ task.finished ? 'Finished' : 'In progress' }}</div>
                             </div>
                         </td>
                         <td class="action-btns-td">
                             <div class="task-action-btns">
-                                <button class="task-edit-btn" (click)="onEditTask(task)"><i
-                                        class="pi pi-pen-to-square"></i></button>
-                                <button class="task-delete-btn" (click)="onRemoveTask(task)"><i
-                                        class="pi pi-trash"></i></button>
+                                @if (buttonStates.isDeleteTaskBtnClicked[task.id]) {
+                                <div class="task-action-btns" #actionWrapper>
+                                    <button (click)="toggleButtonState('toggleDeleteTaskBtn', task.id)"><i
+                                            class="pi pi-times"></i></button>
+                                    <button class="task-delete-btn"
+                                        (click)="onRemoveTask(task); toggleButtonState('deleteTaskBtn')"><i
+                                            class="pi pi-trash"></i></button>
+                                </div>
+                                } @else {
+                                <div class="task-action-btns">
+                                    <button (click)="onEditTask(task)"><i class="pi pi-pencil"></i></button>
+                                    <button (click)="toggleButtonState('toggleDeleteTaskBtn', task.id)"><i
+                                            class="pi pi-trash"></i></button>
+                                </div>
+                                }
                             </div>
                         </td>
                     </tr>
@@ -136,7 +191,6 @@
                 </tbody>
             </table>
             }
-
         </div>
     </div>
 </div>

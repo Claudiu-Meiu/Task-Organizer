@@ -1,8 +1,9 @@
 @import '../../../../styles/abstracts';
 
-.task-backdrop {
+.backdrop {
   z-index: 1;
-  backdrop-filter: blur(1.5px);
+  background-color: rgba(0, 0, 0, 0.352);
+  backdrop-filter: blur(2px);
   position: fixed;
   top: 0;
   bottom: 0;
@@ -12,7 +13,7 @@
   height: 100vh;
 }
 
-.task-dialog {
+dialog {
   z-index: 2;
   top: 0;
   bottom: 0;
@@ -36,9 +37,41 @@
       margin-top: 4px;
     }
   }
+  .filter-tasks-wrapper {
+    padding-top: 20px;
+    @include flex(column, center, flex-start);
+    gap: $flex-gap-lg;
+    .filter-tasks-content {
+      @include flex(column, center, flex-start);
+      gap: $flex-gap-sm;
+      .filter-tasks-content-group {
+        @include flex(column, center, flex-start);
+        gap: $flex-gap-sm;
+        label {
+          @include flex(row, center, center);
+          gap: $flex-gap-sm;
+          cursor: pointer;
+        }
+        input[type='checkbox'] {
+          -webkit-appearance: none;
+          padding: 12px;
+          background-color: $color-btn-bg-grey;
+          border-radius: $border-radius-xsm;
+          cursor: pointer;
+          transition: $transition-fast;
+          &:checked {
+            background-color: $color-btn-bg-white;
+          }
+          &:not(:checked):hover {
+            background-color: $color-btn-bg-light-grey;
+          }
+        }
+      }
+    }
+  }
   .task-dialog-form {
     @include flex(column, center, center);
-    gap: $font-size-lg;
+    gap: $flex-gap-md;
     padding-top: 20px;
     .task-form-item {
       @include flex(column, center, flex-start);
@@ -62,8 +95,10 @@
       .task-form-high-priority,
       .task-form-medium-priority,
       .task-form-low-priority {
+        @include flex(row, flex-start, center);
+        gap: $flex-gap-sm;
         cursor: pointer;
-        padding: 5px 15px;
+        padding: 10px 15px;
         border-radius: $border-radius-sm;
         transition: $transition-fast;
       }
@@ -91,16 +126,19 @@
     }
     .task-submit-btn {
       @include actionBtn(10px 14px);
-      margin-left: auto;
+      width: 100%;
       transition: $transition-fast;
+      font-size: $font-size-md;
       &:disabled {
         cursor: default;
         color: $color-disabled;
       }
       &:not(:disabled) {
-        background-color: $color-btn-bg-white;
+        color: $color-text-white;
+        background-color: $color-btn-bg-grey;
         &:hover {
-          transform: scale(1.2);
+          transform: scale(1.025);
+          background-color: $color-btn-bg-light-grey;
         }
       }
     }
@@ -123,6 +161,8 @@
       .tasks-toolbar-item {
         @include flex(row, flex-start, center);
         gap: $flex-gap-sm;
+        padding-top: 10px;
+        padding-bottom: 10px;
         .toolbar-task-btn {
           @include actionBtn(14px);
           @include flex(row, flex-start, center);
@@ -155,6 +195,10 @@
             background-color: $color-btn-bg-grey;
           }
         }
+        th div {
+          @include flex(row, center, center);
+          gap: $flex-gap-md;
+        }
         th,
         td {
           transition: $transition-fast;
@@ -183,37 +227,42 @@
           gap: $flex-gap-sm;
           .task-status-btn {
             @include actionBtn(0px);
-            font-size: $font-size-lg;
+            font-size: $font-size-xlg;
             color: $color-text-white;
-            transition: $transition-fast;
+            transition: $transition-slow;
             &:hover {
-              transform: scale(1.1);
+              transform: scale(1.5);
+            }
+            &.finished {
+              color: #00ff00;
             }
           }
+        }
+        .action-btns-td {
         }
         .task-action-btns {
           @include flex(row, center, center);
           gap: $flex-gap-sm;
-          .task-edit-btn,
-          .task-delete-btn {
+          button {
             @include actionBtn(10px 13px);
             color: $color-text-white;
-          }
-          .task-edit-btn {
             transition: $transition-fast;
             &:hover {
               background-color: $color-btn-bg-light-grey;
             }
           }
           .task-delete-btn {
-            transition: $transition-fast;
+            transition: $transition-slow;
+            color: $color-text-danger;
+            background-color: $color-btn-bg-dark-grey;
             &:hover {
-              background-color: $color-bg-light-danger;
+              background-color: $color-bg-danger;
             }
           }
-          .pi-pen-to-square,
+          .pi-pencil,
+          .pi-times,
           .pi-trash {
-            padding-top: 4px;
+            padding-top: 3px;
           }
         }
         .high-priority {
@@ -222,7 +271,7 @@
           gap: $flex-gap-sm;
           margin: auto;
           max-width: 100px;
-          padding: 5px;
+          padding: 10px;
           border-radius: $border-radius-sm;
           color: #e66e6e;
           background-color: #5c3030;
@@ -233,7 +282,7 @@
           gap: $flex-gap-sm;
           margin: auto;
           max-width: 100px;
-          padding: 5px;
+          padding: 10px;
           border-radius: $border-radius-sm;
           color: #dede67;
           background-color: #636330;
@@ -244,7 +293,7 @@
           gap: $flex-gap-sm;
           margin: auto;
           max-width: 100px;
-          padding: 5px;
+          padding: 10px;
           border-radius: $border-radius-sm;
           color: #69be69;
           background-color: #345634;

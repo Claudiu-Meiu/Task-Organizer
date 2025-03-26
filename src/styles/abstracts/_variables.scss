@@ -1,23 +1,23 @@
 // Color Variables
 $color-text-white: whitesmoke;
 $color-text-black: black;
-$color-text-danger: red;
+$color-text-danger: #ff4444;
 $color-disabled: #f5f5f518;
 
 $color-bg: #111213;
-$color-bg-page: #161718;
+$color-bg-page: #1c1d1e;
 
 $color-bg-danger: #341c1c;
-$color-bg-light-danger: #751e1e;
+$color-bg-light-danger: #a43838;
 $color-bg-dark-danger: #511313;
 
 $color-btn-bg-white: #e6e6e6;
 $color-btn-bg-grey: #282828;
-$color-btn-bg-light-grey: #494949;
+$color-btn-bg-light-grey: #606060;
 $color-btn-bg-dark-grey: #1a1a1a;
 
 $color-box-shadow: #2a2a2a;
-$color-box-shadow-danger: red;
+$color-box-shadow-danger: $color-text-danger;
 
 $color-border: #313131;
 
@@ -25,6 +25,7 @@ $color-border: #313131;
 $font-size-sm: 14px;
 $font-size-md: 16px;
 $font-size-lg: 18px;
+$font-size-xlg: 20px;
 
 // Box Shadow
 $box-shadow-spread: 0px 0px 0px 1px $color-box-shadow;
@@ -38,11 +39,13 @@ $box-shadow-spread-danger: 0px 0px 0px 2px $color-box-shadow-danger;
 // Border Radius
 $border-radius-md: 20px;
 $border-radius-sm: 10px;
+$border-radius-xsm: 5px;
 
 // Transition
 $transition-fast: all 150ms;
 $transition-slow: all 300ms;
 
 // Flex gap
-$flex-gap-sm: 10px;
-$flex-gap-md: 20px;
+$flex-gap-sm: 8px;
+$flex-gap-md: 16px;
+$flex-gap-lg: 32px;

@@ -4,10 +4,12 @@ export interface Task {
   description: string;
   dueDate: string;
   priority: string;
+  finished: boolean;
 }
 
-export interface addTaskData {
+export interface TaskData {
   description: string;
   dueDate: string;
   priority: string;
+  finished: boolean;
 }

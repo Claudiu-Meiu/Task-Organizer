@@ -1,38 +1,38 @@
 <div class="board-btn-wrapper">
-  @if (isDeleteBoardBtnClicked) {
+  @if (buttonStates.isDeleteBoardBtnClicked) {
   <div class="delete-board-wrapper" #deleteWrapper>
-    <div><i class="pi pi-trash"></i> <b> {{ boardBtn.boardName }}</b></div>
+    <header>{{ boardBtn.boardName }}</header>
     <div class="deletion-action-btns-wrapper">
-      <button class="confirm-board-deletion" (click)="onRemoveBoard()"><i class="pi pi-check"></i></button>
       <button class="cancel-board-deletion" (click)="toggleButtonState('closeDeleteBtn')"><i
-          class="pi pi-times"></i></button>
+        class="pi pi-times"></i></button>
+      <button class="confirm-board-deletion" (click)="onRemoveBoard()"><i class="pi pi-trash"></i></button>
     </div>
   </div>
   } @else {
-  @if (isEditBoardBtnClicked) {
+  @if (buttonStates.isEditBoardBtnClicked) {
   <div class="edit-board-wrapper" #editBoardWrapper>
     <form #editBoardForm="ngForm" (ngSubmit)="onSubmitEdit(editBoardForm)">
       <div class="edit-board-form-content">
         <input #editBoardInput [(ngModel)]="enteredBoardName" name="enteredBoardName" type="text" required>
         <div class="edit-board-form-btns">
-          <button class="confirm-edit-btn" type="submit" [disabled]="!editBoardForm.valid"
-            (click)="toggleButtonState('confirmEditBtn')"><i class="pi pi-check"></i></button>
           <button class="close-edit-btn" type="button" (click)="toggleButtonState('closeEditBtn')"><i
               class="pi pi-times"></i></button>
+          <button class="confirm-edit-btn" type="submit" [disabled]="!editBoardForm.valid"
+            (click)="toggleButtonState('confirmEditBtn')"><i class="pi pi-check"></i></button>
         </div>
       </div>
     </form>
   </div>
   } @else {
-  <a class="board-btn" [ngClass]="{'board-btn-active-action' : isBoardBtnActionClicked}"
+  <a class="board-btn" [ngClass]="{'board-btn-active-action' : buttonStates.isBoardBtnActionClicked}"
     [routerLink]="['/board', boardBtn.id, boardBtn.boardUrl]" routerLinkActive="active">
     {{ boardBtn.boardName }}
     <button class="board-btn-action-btn" (click)="toggleButtonState('actionBtn')"><i
         class="pi pi-ellipsis-h"></i></button>
   </a>
-  @if (isBoardBtnActionClicked) {
+  @if (buttonStates.isBoardBtnActionClicked) {
   <div class="action-btns-wrapper" #actionWrapper>
-    <button class="edit-board" (click)="toggleButtonState('editBtn')"><i class="pi pi-pen-to-square"></i></button>
+    <button class="edit-board" (click)="toggleButtonState('editBtn')"><i class="pi pi-pencil"></i></button>
     <button class="delete-board" (click)="toggleButtonState('deleteBtn')"><i class="pi pi-trash"></i></button>
   </div>
   }

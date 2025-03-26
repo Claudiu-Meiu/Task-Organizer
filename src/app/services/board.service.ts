@@ -1,10 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { type Board } from '../models/board.model';
 import { AppRoutes } from '../models/app-routes.enum';
-
 import { TasksService } from './tasks.service';
+import { type Board } from '../models/board.model';
 
 @Injectable({
   providedIn: 'root',

@@ -8,7 +8,6 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgForm, FormsModule } from '@angular/forms';
-
 import { BoardService } from '../../services/board.service';
 import { BoardBtnComponent } from './board-btn/board-btn.component';
 
@@ -20,15 +19,28 @@ import { BoardBtnComponent } from './board-btn/board-btn.component';
   styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent implements AfterViewChecked {
-  boardService = inject(BoardService);
-
-  isSidebarBtnClicked: boolean = false;
-  isAddBtnClicked: boolean = false;
-  boardNameInput!: string;
-
-  @ViewChild('addBoardWrapper') addBoardWrapper!: ElementRef;
+  @ViewChild('addBoardWrapper')
+  addBoardWrapper!: ElementRef;
   @ViewChild('addBoardInput') addBoardInput!: ElementRef<HTMLInputElement>;
   @ViewChild('addBoardForm') addBoardForm!: NgForm;
+
+  boardService = inject(BoardService);
+
+  buttonStates = {
+    isSidebarBtnClicked: false,
+    isAddBtnClicked: false,
+  };
+  boardNameInput!: string;
+
+  ngAfterViewChecked() {
+    this.setFocus();
+  }
+
+  setFocus() {
+    if (this.buttonStates.isAddBtnClicked && this.addBoardInput) {
+      this.addBoardInput.nativeElement.focus();
+    }
+  }
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
@@ -37,35 +49,28 @@ export class SidebarComponent implements AfterViewChecked {
       this.addBoardWrapper &&
       !this.addBoardWrapper.nativeElement.contains(target)
     ) {
-      this.isAddBtnClicked = false;
+      this.buttonStates.isAddBtnClicked = false;
       this.addBoardForm.resetForm();
     }
-  }
-
-  setFocus() {
-    if (this.isAddBtnClicked && this.addBoardInput) {
-      this.addBoardInput.nativeElement.focus();
-    }
-  }
-
-  ngAfterViewChecked() {
-    this.setFocus();
   }
 
   toggleButtonState(
     button: 'sidebarBtn' | 'addBoardBtn' | 'submitAddBoard' | 'closeAddBoard'
   ) {
-    if (button === 'sidebarBtn') {
-      this.isSidebarBtnClicked = !this.isSidebarBtnClicked;
-    }
-    if (button === 'addBoardBtn') {
-      this.isAddBtnClicked = true;
-    }
-    if (button === 'submitAddBoard') {
-      this.isAddBtnClicked = false;
-    }
-    if (button === 'closeAddBoard') {
-      this.isAddBtnClicked = false;
+    switch (button) {
+      case 'sidebarBtn':
+        this.buttonStates.isSidebarBtnClicked =
+          !this.buttonStates.isSidebarBtnClicked;
+        break;
+      case 'addBoardBtn':
+        this.buttonStates.isAddBtnClicked = true;
+        break;
+      case 'submitAddBoard':
+        this.buttonStates.isAddBtnClicked = false;
+        break;
+      case 'closeAddBoard':
+        this.buttonStates.isAddBtnClicked = false;
+        break;
     }
   }
 

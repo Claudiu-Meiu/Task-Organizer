@@ -60,15 +60,15 @@
       color: $color-text-white;
       transition: $transition-slow;
     }
-    .pi-pen-to-square,
+    .pi-pencil,
     .pi-trash {
       padding-top: 3px;
     }
-    .edit-board:hover {
-      background-color: $color-btn-bg-grey;
-    }
-    .delete-board:hover {
-      background-color: $color-bg-light-danger;
+    .edit-board,
+    .delete-board {
+      &:hover {
+        background-color: $color-btn-bg-grey;
+      }
     }
   }
 
@@ -129,7 +129,10 @@
     border-radius: $border-radius-sm;
     font-size: $font-size-sm;
     color: $color-text-white;
-    background-color: $color-bg-light-danger;
+    background-color: $color-btn-bg-light-grey;
+    header {
+      font-size: $font-size-md;
+    }
     .deletion-action-btns-wrapper {
       @include flex(row, center, center);
       gap: $flex-gap-sm;
@@ -139,9 +142,10 @@
       }
       .confirm-board-deletion {
         transition: $transition-slow;
+        color: $color-text-danger;
+        background-color: $color-btn-bg-grey;
         &:hover {
-          color: $color-text-danger;
-          background-color: $color-bg-dark-danger;
+          background-color: $color-bg-danger;
         }
       }
       .cancel-board-deletion {
@@ -150,7 +154,7 @@
           background-color: $color-btn-bg-grey;
         }
       }
-      .pi-check,
+      .pi-trash,
       .pi-times {
         padding-top: 3px;
       }

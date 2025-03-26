@@ -1,4 +1,4 @@
-@if (isSidebarBtnClicked) {
+@if (buttonStates.isSidebarBtnClicked) {
 <button (click)="toggleButtonState('sidebarBtn')" class="sidebar-hidden">
   <i class="pi pi-angle-double-right"></i>
 </button>
@@ -17,17 +17,17 @@
         <app-board-btn [boardBtn]="board" />
       </li>
       }
-      @if (isAddBtnClicked) {
+      @if (buttonStates.isAddBtnClicked) {
       <li class="sidebar-item" #addBoardWrapper>
         <form #addBoardForm="ngForm" (ngSubmit)="onSubmitAddBoard(addBoardForm)">
           <div class="add-board-form-content">
             <input #addBoardInput [(ngModel)]="boardNameInput" name="boardNameInput" required>
             <div class="add-board-form-btns">
-              <button class="confirm-add-btn" type="submit" [disabled]="addBoardForm.invalid"
-                (click)="toggleButtonState('submitAddBoard')"><i class="pi pi-check"></i></button>
               <button class="close-add-btn" type="button"
                 (click)="toggleButtonState('closeAddBoard'); addBoardForm.resetForm()"><i
                   class="pi pi-times"></i></button>
+              <button class="confirm-add-btn" type="submit" [disabled]="addBoardForm.invalid"
+                (click)="toggleButtonState('submitAddBoard')"><i class="pi pi-check"></i></button>
             </div>
           </div>
         </form>
