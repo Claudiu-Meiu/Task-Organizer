@@ -26,10 +26,14 @@ export class BoardComponent implements OnInit {
       this.boardId = Number(params.get('id'));
       const boardUrl = params.get('boardUrl');
       const selectedBoard = this.boardService.getBoardById(this.boardId);
+
       if (!selectedBoard || selectedBoard.boardUrl !== boardUrl) {
         this.router.navigate([AppRoutes.NotFound]);
       } else {
         this.boardTitle = selectedBoard.boardName;
+      }
+      if (!selectedBoard) {
+        this.router.navigate([AppRoutes.Home]);
       }
     });
   }

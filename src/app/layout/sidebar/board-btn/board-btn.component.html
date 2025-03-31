@@ -1,14 +1,4 @@
 <div class="board-btn-wrapper">
-  @if (buttonStates.isDeleteBoardBtnClicked) {
-  <div class="delete-board-wrapper" #deleteWrapper>
-    <header>{{ boardBtn.boardName }}</header>
-    <div class="deletion-action-btns-wrapper">
-      <button class="cancel-board-deletion" (click)="toggleButtonState('closeDeleteBtn')"><i
-        class="pi pi-times"></i></button>
-      <button class="confirm-board-deletion" (click)="onRemoveBoard()"><i class="pi pi-trash"></i></button>
-    </div>
-  </div>
-  } @else {
   @if (buttonStates.isEditBoardBtnClicked) {
   <div class="edit-board-wrapper" #editBoardWrapper>
     <form #editBoardForm="ngForm" (ngSubmit)="onSubmitEdit(editBoardForm)">
@@ -24,19 +14,24 @@
     </form>
   </div>
   } @else {
-  <a class="board-btn" [ngClass]="{'board-btn-active-action' : buttonStates.isBoardBtnActionClicked}"
-    [routerLink]="['/board', boardBtn.id, boardBtn.boardUrl]" routerLinkActive="active">
+  <div class="board-btn" [routerLink]="['/board', boardBtn.id, boardBtn.boardUrl]" routerLinkActive="active">
     {{ boardBtn.boardName }}
     <button class="board-btn-action-btn" (click)="toggleButtonState('actionBtn')"><i
         class="pi pi-ellipsis-h"></i></button>
-  </a>
-  @if (buttonStates.isBoardBtnActionClicked) {
-  <div class="action-btns-wrapper" #actionWrapper>
-    <button class="edit-board" (click)="toggleButtonState('editBtn')"><i class="pi pi-pencil"></i></button>
-    <button class="delete-board" (click)="toggleButtonState('deleteBtn')"><i class="pi pi-trash"></i></button>
+    @if (buttonStates.isDeleteBoardBtnClicked) {
+    <div class="action-btns-wrapper" #deleteWrapper>
+      <button class="cancel-board-deletion" (click)="toggleButtonState('closeDeleteBtn')"><i
+          class="pi pi-times"></i></button>
+      <button class="confirm-board-deletion" (click)="onRemoveBoard()"><i class="pi pi-trash"></i></button>
+    </div>
+    } @else {
+    @if (buttonStates.isBoardBtnActionClicked) {
+    <div class="action-btns-wrapper" #actionWrapper>
+      <button class="edit-board" (click)="toggleButtonState('editBtn')"><i class="pi pi-pencil"></i></button>
+      <button class="delete-board" (click)="toggleButtonState('deleteBtn')"><i class="pi pi-trash"></i></button>
+    </div>
+    }
+    }
   </div>
   }
-  }
-  }
-
 </div>

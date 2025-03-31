@@ -72,8 +72,9 @@ dialog {
   .task-dialog-form {
     @include flex(column, center, center);
     gap: $flex-gap-md;
-    padding-top: 20px;
+    padding-top: 10px;
     .task-form-item {
+      padding-top: 10px;
       @include flex(column, center, flex-start);
       gap: $flex-gap-sm;
       width: 100%;
@@ -218,8 +219,7 @@ dialog {
         }
         .estimation-td,
         .priority-td,
-        .status-td,
-        .action-btns-td {
+        .status-td {
           text-align: center;
         }
         .task-status {
@@ -238,10 +238,8 @@ dialog {
             }
           }
         }
-        .action-btns-td {
-        }
         .task-action-btns {
-          @include flex(row, center, center);
+          @include flex(row, flex-end, center);
           gap: $flex-gap-sm;
           button {
             @include actionBtn(10px 13px);

@@ -41,11 +41,9 @@
       }
     }
   }
-
   .action-btns-wrapper {
     @include flex(row, space-between, center);
     gap: $flex-gap-sm;
-    padding: 10px;
     border-radius: $border-radius-sm;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
@@ -60,18 +58,33 @@
       color: $color-text-white;
       transition: $transition-slow;
     }
-    .pi-pencil,
-    .pi-trash {
-      padding-top: 3px;
+    .confirm-board-deletion {
+      @include actionBtn(10px 13px);
+      transition: $transition-slow;
+      color: $color-text-danger;
+      background-color: $color-btn-bg-grey;
+      &:hover {
+        background-color: $color-bg-danger;
+      }
+    }
+    .cancel-board-deletion {
+      @include actionBtn(10px 13px);
+      color: $color-text-white;
+      transition: $transition-fast;
     }
     .edit-board,
-    .delete-board {
+    .delete-board,
+    .cancel-board-deletion {
       &:hover {
         background-color: $color-btn-bg-grey;
       }
     }
+    .pi-pencil,
+    .pi-trash,
+    .pi-times {
+      padding-top: 3px;
+    }
   }
-
   .edit-board-wrapper {
     width: 100%;
     .edit-board-form-content {
@@ -83,7 +96,7 @@
       background-color: $color-btn-bg-light-grey;
       input {
         width: 100%;
-        padding: 12px;
+        padding: 12.4px;
         border: none;
         color: $color-text-white;
         background: $color-btn-bg-grey;
@@ -118,45 +131,6 @@
             background-color: $color-btn-bg-grey;
           }
         }
-      }
-    }
-  }
-
-  .delete-board-wrapper {
-    flex-grow: 1;
-    @include flex(row, space-between, center);
-    padding: 10.5px;
-    border-radius: $border-radius-sm;
-    font-size: $font-size-sm;
-    color: $color-text-white;
-    background-color: $color-btn-bg-light-grey;
-    header {
-      font-size: $font-size-md;
-    }
-    .deletion-action-btns-wrapper {
-      @include flex(row, center, center);
-      gap: $flex-gap-sm;
-      button {
-        @include actionBtn(10px 13px);
-        color: $color-text-white;
-      }
-      .confirm-board-deletion {
-        transition: $transition-slow;
-        color: $color-text-danger;
-        background-color: $color-btn-bg-grey;
-        &:hover {
-          background-color: $color-bg-danger;
-        }
-      }
-      .cancel-board-deletion {
-        transition: $transition-fast;
-        &:hover {
-          background-color: $color-btn-bg-grey;
-        }
-      }
-      .pi-trash,
-      .pi-times {
-        padding-top: 3px;
       }
     }
   }

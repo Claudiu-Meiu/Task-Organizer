@@ -65,9 +65,6 @@ export class TasksComponent implements AfterViewChecked {
 
   taskFinished: boolean = false;
 
-  selectedPriorities: Set<string> = new Set();
-  selectedStatus: Set<string> = new Set();
-
   ngAfterViewChecked() {
     this.setFocus();
   }
@@ -100,13 +97,13 @@ export class TasksComponent implements AfterViewChecked {
   toggleButtonState(button: string, taskId?: number) {
     switch (button) {
       case 'toggleHighPriorityBtnActive':
-        this.setTaskPriorityButtonState('high');
+        this.setTaskPriorityButtonState('High');
         break;
       case 'toggleMediumPriorityBtnActive':
-        this.setTaskPriorityButtonState('medium');
+        this.setTaskPriorityButtonState('Medium');
         break;
       case 'toggleLowPriorityBtnActive':
-        this.setTaskPriorityButtonState('low');
+        this.setTaskPriorityButtonState('Low');
         break;
       case 'addTaskBtn':
         this.buttonStates.isAddTaskBtnClicked = true;
@@ -130,10 +127,10 @@ export class TasksComponent implements AfterViewChecked {
     }
   }
 
-  private setTaskPriorityButtonState(taskPriority: 'high' | 'medium' | 'low') {
-    this.buttonStates.taskPriority.high = taskPriority === 'high';
-    this.buttonStates.taskPriority.medium = taskPriority === 'medium';
-    this.buttonStates.taskPriority.low = taskPriority === 'low';
+  private setTaskPriorityButtonState(taskPriority: string) {
+    this.buttonStates.taskPriority.high = taskPriority === 'High';
+    this.buttonStates.taskPriority.medium = taskPriority === 'Medium';
+    this.buttonStates.taskPriority.low = taskPriority === 'Low';
   }
 
   private resetPriorityButtons() {
@@ -173,9 +170,7 @@ export class TasksComponent implements AfterViewChecked {
     this.editTaskEnteredPriority = task.priority;
     this.buttonStates.isEditTaskBtnClicked = true;
 
-    this.setTaskPriorityButtonState(
-      task.priority.toLowerCase() as 'high' | 'medium' | 'low'
-    );
+    this.setTaskPriorityButtonState(task.priority);
   }
 
   onSubmitEditTask(form: NgForm) {
@@ -191,8 +186,7 @@ export class TasksComponent implements AfterViewChecked {
   }
 
   onSetTaskStatus(task: Task) {
-    this.taskIdToEdit = task.id;
-    task.finished = !task.finished;
+    this.tasksService.setTaskStatus(task, this.taskIdToEdit);
   }
 
   onRemoveTask(task: Task) {
@@ -200,31 +194,6 @@ export class TasksComponent implements AfterViewChecked {
   }
 
   get filteredTasks() {
-    return this.tasksService.getBoardTasks(this.BoardId).filter((task) => {
-      const priorityMatch =
-        this.selectedPriorities.size === 0 ||
-        this.selectedPriorities.has(task.priority);
-      const statusMatch =
-        this.selectedStatus.size === 0 ||
-        (this.selectedStatus.has('Finished') && task.finished) ||
-        (this.selectedStatus.has('In progress') && !task.finished);
-      return priorityMatch && statusMatch;
-    });
-  }
-
-  setStatusFilter(status: 'Finished' | 'In progress') {
-    if (this.selectedStatus.has(status)) {
-      this.selectedStatus.delete(status);
-    } else {
-      this.selectedStatus.add(status);
-    }
-  }
-
-  setPriorityFilter(priority: string) {
-    if (this.selectedPriorities.has(priority)) {
-      this.selectedPriorities.delete(priority);
-    } else {
-      this.selectedPriorities.add(priority);
-    }
+    return this.tasksService.filterTasks(this.BoardId);
   }
 }

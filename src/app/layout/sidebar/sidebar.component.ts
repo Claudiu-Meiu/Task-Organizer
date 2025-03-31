@@ -36,7 +36,7 @@ export class SidebarComponent implements AfterViewChecked {
     this.setFocus();
   }
 
-  setFocus() {
+  private setFocus() {
     if (this.buttonStates.isAddBtnClicked && this.addBoardInput) {
       this.addBoardInput.nativeElement.focus();
     }

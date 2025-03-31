@@ -5,63 +5,16 @@ import { type Task, type TaskData } from '../models/task.model';
   providedIn: 'root',
 })
 export class TasksService {
-  TasksArray: Task[] = [
-    {
-      id: 1,
-      boardId: 1,
-      description: 'Lorem Ipsum is simply dummy text.',
-      dueDate: '2025-03-24',
-      priority: 'Medium',
-      finished: false,
-    },
-    {
-      id: 2,
-      boardId: 1,
-      description: 'This is a task',
-      dueDate: '2025-03-25',
-      priority: 'High',
-      finished: true,
-    },
-    {
-      id: 3,
-      boardId: 1,
-      description: 'This is another task',
-      dueDate: '2025-03-26',
-      priority: 'Low',
-      finished: false,
-    },
-    {
-      id: 4,
-      boardId: 2,
-      description: 'Lorem Ipsum is simply dummy text.',
-      dueDate: '2025-03-24',
-      priority: 'Low',
-      finished: true,
-    },
-    {
-      id: 5,
-      boardId: 2,
-      description: 'This is a task Lorem Ipsum is simply dummy text.',
-      dueDate: '2025-03-25',
-      priority: 'High',
-      finished: true,
-    },
-    {
-      id: 6,
-      boardId: 2,
-      description: 'This is another task',
-      dueDate: '2025-03-26',
-      priority: 'Medium',
-      finished: false,
-    },
-  ];
-
-  existingIds!: Set<number>;
+  tasksArray: Task[] = this.getTasksFromLocalStorage();
+  existingTasksIds: Set<number> = new Set();
   newId!: number;
   newTask!: Task;
 
+  selectedPriorities: Set<string> = new Set();
+  selectedStatus: Set<string> = new Set();
+
   sortTasksByDueDate() {
-    this.TasksArray.sort((a, b) => {
+    this.tasksArray.sort((a, b) => {
       const dateA = new Date(a.dueDate);
       const dateB = new Date(b.dueDate);
       return dateA.getTime() - dateB.getTime();
@@ -69,17 +22,17 @@ export class TasksService {
   }
 
   getBoardTasks(boardId: number) {
-    return this.TasksArray.filter((task) => task.boardId === boardId);
+    return this.tasksArray.filter((task) => task.boardId === boardId);
   }
 
   getTaskById(id: number) {
-    return this.TasksArray.find((task) => task.id === id);
+    return this.tasksArray.find((task) => task.id === id);
   }
 
   addTask(boardId: number, taskData: TaskData) {
-    this.existingIds = new Set(this.TasksArray.map((task) => task.id));
+    this.existingTasksIds = new Set(this.tasksArray.map((task) => task.id));
     this.newId = 1;
-    while (this.existingIds.has(this.newId)) {
+    while (this.existingTasksIds.has(this.newId)) {
       this.newId++;
     }
     this.newTask = {
@@ -90,8 +43,9 @@ export class TasksService {
       priority: taskData.priority,
       finished: taskData.finished,
     };
-    this.TasksArray.push(this.newTask);
+    this.tasksArray.push(this.newTask);
     this.sortTasksByDueDate();
+    this.saveTasksToLocalStorage(this.tasksArray);
   }
 
   editTask(
@@ -107,9 +61,55 @@ export class TasksService {
       taskToEdit.priority = updatedTaskPriority;
       this.sortTasksByDueDate();
     }
+    this.saveTasksToLocalStorage(this.tasksArray);
+  }
+
+  setTaskStatus(task: Task, taskIdToEdit: number | null = null) {
+    taskIdToEdit = task.id;
+    task.finished = !task.finished;
+    this.saveTasksToLocalStorage(this.tasksArray);
   }
 
   removeTask(id: number) {
-    this.TasksArray = this.TasksArray.filter((task) => task.id !== id);
+    this.tasksArray = this.tasksArray.filter((task) => task.id !== id);
+    this.saveTasksToLocalStorage(this.tasksArray);
+  }
+
+  filterTasks(boardId: number) {
+    return this.getBoardTasks(boardId).filter((task) => {
+      const priorityMatch =
+        this.selectedPriorities.size === 0 ||
+        this.selectedPriorities.has(task.priority);
+      const statusMatch =
+        this.selectedStatus.size === 0 ||
+        (this.selectedStatus.has('Finished') && task.finished) ||
+        (this.selectedStatus.has('In progress') && !task.finished);
+      return priorityMatch && statusMatch;
+    });
+  }
+
+  setTaskStatusFilter(status: 'Finished' | 'In progress') {
+    if (this.selectedStatus.has(status)) {
+      this.selectedStatus.delete(status);
+    } else {
+      this.selectedStatus.add(status);
+    }
+  }
+
+  setTaskPriorityFilter(priority: string) {
+    if (this.selectedPriorities.has(priority)) {
+      this.selectedPriorities.delete(priority);
+    } else {
+      this.selectedPriorities.add(priority);
+    }
+  }
+
+  saveTasksToLocalStorage(array: Task[]) {
+    localStorage.setItem('tasks', JSON.stringify(array));
+  }
+
+  getTasksFromLocalStorage(): Task[] {
+    const storedTasks = localStorage.getItem('tasks');
+    return storedTasks ? JSON.parse(storedTasks) : [];
   }
 }

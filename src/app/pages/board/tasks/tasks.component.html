@@ -1,22 +1,21 @@
 @if (buttonStates.isAddTaskBtnClicked) {
-<div class="backdrop" (click)="toggleButtonState('closeAddTaskBtn'); addTaskForm.resetForm()"></div>
+<div class="backdrop"></div>
 <dialog open>
     <button class="task-dialog-close-btn" type="button"
         (click)="toggleButtonState('closeAddTaskBtn'); addTaskForm.resetForm()"><i class="pi pi-times"></i></button>
     <h4>Create a new task</h4>
     <form class="task-dialog-form" #addTaskForm="ngForm" (ngSubmit)="onSubmitAddTask(addTaskForm)">
         <div class="task-form-item">
-            <label for="description">Description</label>
+            <label for="description">Description *</label>
             <textarea #addTaskDescriptionInput id="summary" rows="3" name="description"
                 [(ngModel)]="addTaskEnteredDescription" required></textarea>
         </div>
-
         <div class="task-form-item">
-            <label for="due-date">Due Date</label>
+            <label for="due-date">Due date *</label>
             <input type="date" id="due-date" name="due-date" [(ngModel)]="addTaskEnteredDueDate" required />
         </div>
-
         <div class="task-form-item">
+            <label>Priority *</label>
             <div class="task-form-high-priority" type="button"
                 (click)="addTaskEnteredPriority = 'High'; toggleButtonState('toggleHighPriorityBtnActive')"
                 [ngClass]="{'active': buttonStates.taskPriority.high}"><i class="pi pi-bullseye"></i> High</div>
@@ -41,13 +40,12 @@
     <div class="tasks-container">
         <div class="tasks-toolbar">
             <div class="tasks-toolbar-item">
-
             </div>
             <div class="tasks-toolbar-item">
                 <button class="toolbar-task-btn" (click)="toggleButtonState('toggleFilter')"><i
                         class="pi pi-filter-fill"></i></button>
                 @if (buttonStates.isFilterTasksBtnClicked) {
-                <div class="backdrop" (click)="toggleButtonState('toggleFilter')"></div>
+                <div class="backdrop"></div>
                 <dialog open>
                     <button class="task-dialog-close-btn" type="button" (click)="toggleButtonState('toggleFilter')">
                         <i class="pi pi-times"></i>
@@ -55,39 +53,40 @@
                     <h4>Filter tasks</h4>
                     <div class="filter-tasks-wrapper">
                         <div class="filter-tasks-content">
-                            <div>By status:</div>
+                            <div>by status:</div>
                             <div class="filter-tasks-content-group">
                                 <label>
-                                    <input type="checkbox" name="status" (change)="setStatusFilter('In progress')"
-                                        [checked]="selectedStatus.has('In progress')" /> In progress
+                                    <input type="checkbox" name="status"
+                                        (change)="tasksService.setTaskStatusFilter('In progress')"
+                                        [checked]="tasksService.selectedStatus.has('In progress')" /> In progress
                                 </label>
                                 <label>
-                                    <input type="checkbox" name="status" (change)="setStatusFilter('Finished')"
-                                        [checked]="selectedStatus.has('Finished')" /> Finished
+                                    <input type="checkbox" name="status"
+                                        (change)="tasksService.setTaskStatusFilter('Finished')"
+                                        [checked]="tasksService.selectedStatus.has('Finished')" /> Finished
                                 </label>
                             </div>
                         </div>
                         <div class="filter-tasks-content">
-                            <div>By priority:</div>
+                            <div>by priority:</div>
                             <div class="filter-tasks-content-group">
                                 <label>
-                                    <input type="checkbox" (change)="setPriorityFilter('High')"
-                                        [checked]="selectedPriorities.has('High')" /> High
+                                    <input type="checkbox" (change)="tasksService.setTaskPriorityFilter('High')"
+                                        [checked]="tasksService.selectedPriorities.has('High')" /> High
                                 </label>
                                 <label>
-                                    <input type="checkbox" (change)="setPriorityFilter('Medium')"
-                                        [checked]="selectedPriorities.has('Medium')" /> Medium
+                                    <input type="checkbox" (change)="tasksService.setTaskPriorityFilter('Medium')"
+                                        [checked]="tasksService.selectedPriorities.has('Medium')" /> Medium
                                 </label>
                                 <label>
-                                    <input type="checkbox" (change)="setPriorityFilter('Low')"
-                                        [checked]="selectedPriorities.has('Low')" /> Low
+                                    <input type="checkbox" (change)="tasksService.setTaskPriorityFilter('Low')"
+                                        [checked]="tasksService.selectedPriorities.has('Low')" /> Low
                                 </label>
                             </div>
                         </div>
                     </div>
                 </dialog>
                 }
-
                 <button class="toolbar-task-btn toolbar-add-task-btn" (click)="toggleButtonState('addTaskBtn')"><i
                         class="pi pi-plus"></i></button>
             </div>
@@ -95,25 +94,24 @@
         <div class="tasks-content">
 
             @if (buttonStates.isEditTaskBtnClicked) {
-            <div class="backdrop" (click)="toggleButtonState('closeEditTaskBtn')"></div>
+            <div class="backdrop"></div>
             <dialog open>
                 <button class="task-dialog-close-btn" type="button" (click)="toggleButtonState('closeEditTaskBtn')"><i
                         class="pi pi-times"></i></button>
                 <h4 class="task-dialog-header">Edit task</h4>
                 <form class="task-dialog-form" #editTaskForm="ngForm" (ngSubmit)="onSubmitEditTask(editTaskForm)">
                     <div class="task-form-item">
-                        <label for="description">Description</label>
+                        <label for="description">Description *</label>
                         <textarea #editTaskDescriptionInput rows="3" name="description"
                             [(ngModel)]="editTaskEnteredDescription" required></textarea>
                     </div>
-
                     <div class="task-form-item">
-                        <label for="due-date">Due Date</label>
+                        <label for="due-date">Due date *</label>
                         <input type="date" id="due-date" name="due-date" [(ngModel)]="editTaskEnteredDueDate"
                             required />
                     </div>
-
                     <div class="task-form-item">
+                        <label>Priority *</label>
                         <div class="task-form-high-priority" type="button"
                             (click)="editTaskEnteredPriority = 'High'; toggleButtonState('toggleHighPriorityBtnActive')"
                             [class.active]="buttonStates.taskPriority.high">
@@ -127,13 +125,13 @@
                             (click)="editTaskEnteredPriority = 'Low'; toggleButtonState('toggleLowPriorityBtnActive')"
                             [class.active]="buttonStates.taskPriority.low"><i class="pi pi-bullseye"></i> Low</div>
                     </div>
-
                     <button class="task-submit-btn" type="submit" [disabled]="editTaskForm.invalid">Save</button>
                 </form>
             </dialog>
             }
             @if (filteredTasks.length === 0) {
-            <p>No tasks available. Consider adding a new task or modifying your filters.</p>
+            <p><i class="pi pi-exclamation-circle"></i> No tasks available. Consider adding a new task or modifying your
+                filters.</p>
             } @else {
             <table>
                 <thead>

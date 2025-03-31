@@ -51,7 +51,7 @@ export class BoardBtnComponent implements OnInit, AfterViewChecked {
     this.setFocus();
   }
 
-  setFocus() {
+  private setFocus() {
     if (this.buttonStates.isEditBoardBtnClicked && this.editBoardInput) {
       this.editBoardInput.nativeElement.focus();
     }
