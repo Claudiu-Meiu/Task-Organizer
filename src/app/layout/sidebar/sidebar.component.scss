@@ -46,9 +46,9 @@
         padding-top: 5px;
       }
     }
-    .icon {
+    .logo {
       padding: 10px;
-      border-radius: $border-radius-sm;
+      border-radius: $border-radius-md;
       color: $color-text-black;
       background-color: $color-btn-bg-white;
     }
@@ -75,7 +75,6 @@
         &:hover {
           cursor: pointer;
           background-color: $color-btn-bg-light-grey;
-          transform: scale(1.025);
         }
       }
       .add-board-form-content {

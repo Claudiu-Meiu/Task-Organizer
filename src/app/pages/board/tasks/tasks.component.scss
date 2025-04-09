@@ -56,7 +56,7 @@ dialog {
           -webkit-appearance: none;
           padding: 12px;
           background-color: $color-btn-bg-grey;
-          border-radius: $border-radius-xsm;
+          border-radius: $border-radius-md;
           cursor: pointer;
           transition: $transition-fast;
           &:checked {
@@ -175,11 +175,6 @@ dialog {
             background-color: $color-btn-bg-light-grey;
           }
         }
-        .toolbar-add-task-btn {
-          &:hover {
-            transform: scale(1.2);
-          }
-        }
       }
     }
     .tasks-content {
@@ -231,7 +226,7 @@ dialog {
             color: $color-text-white;
             transition: $transition-slow;
             &:hover {
-              transform: scale(1.5);
+              transform: scale(1.2);
             }
             &.finished {
               color: #00ff00;

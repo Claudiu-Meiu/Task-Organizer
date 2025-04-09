@@ -8,7 +8,7 @@
 @mixin actionBtn($padding) {
   cursor: pointer;
   padding: $padding;
-  border-radius: $border-radius-sm;
+  border-radius: $border-radius-md;
   border: none;
   background: none;
   backface-visibility: hidden;
