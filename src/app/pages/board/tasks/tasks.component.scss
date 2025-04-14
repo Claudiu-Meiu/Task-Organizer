@@ -138,7 +138,6 @@ dialog {
         color: $color-text-white;
         background-color: $color-btn-bg-grey;
         &:hover {
-          transform: scale(1.025);
           background-color: $color-btn-bg-light-grey;
         }
       }
