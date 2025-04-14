@@ -1,0 +1,297 @@
+@import '../../../../styles/abstracts';
+
+.backdrop {
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.352);
+  backdrop-filter: blur(2px);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+dialog {
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 400px;
+  border: none;
+  color: $color-text-white;
+  border-radius: $border-radius-md;
+  background-color: $color-bg;
+  box-shadow: $box-shadow-spread;
+  .task-dialog-close-btn {
+    @include actionBtn(8px 12px);
+    font-size: $font-size-lg;
+    float: right;
+    color: $color-text-white;
+    transition: $transition-fast;
+    &:hover {
+      background-color: $color-btn-bg-dark-grey;
+    }
+    .pi-times {
+      margin-top: 4px;
+    }
+  }
+  .filter-tasks-wrapper {
+    padding-top: 20px;
+    @include flex(column, center, flex-start);
+    gap: $flex-gap-lg;
+    .filter-tasks-content {
+      @include flex(column, center, flex-start);
+      gap: $flex-gap-sm;
+      .filter-tasks-content-group {
+        @include flex(column, center, flex-start);
+        gap: $flex-gap-sm;
+        label {
+          @include flex(row, center, center);
+          gap: $flex-gap-sm;
+          cursor: pointer;
+        }
+        input[type='checkbox'] {
+          -webkit-appearance: none;
+          padding: 12px;
+          background-color: $color-btn-bg-grey;
+          border-radius: $border-radius-md;
+          cursor: pointer;
+          transition: $transition-fast;
+          &:checked {
+            background-color: $color-btn-bg-white;
+          }
+          &:not(:checked):hover {
+            background-color: $color-btn-bg-light-grey;
+          }
+        }
+      }
+    }
+  }
+  .task-dialog-form {
+    @include flex(column, center, center);
+    gap: $flex-gap-md;
+    padding-top: 10px;
+    .task-form-item {
+      padding-top: 10px;
+      @include flex(column, center, flex-start);
+      gap: $flex-gap-sm;
+      width: 100%;
+      input,
+      textarea {
+        font-family: inherit;
+        box-sizing: border-box;
+        padding: 15px;
+        width: 100%;
+        border: none;
+        color: $color-text-white;
+        background-color: $color-btn-bg-grey;
+      }
+      ::-webkit-calendar-picker-indicator {
+        cursor: pointer;
+        font-size: $font-size-lg;
+        filter: invert(1);
+      }
+      .task-form-high-priority,
+      .task-form-medium-priority,
+      .task-form-low-priority {
+        @include flex(row, flex-start, center);
+        gap: $flex-gap-sm;
+        cursor: pointer;
+        padding: 10px 15px;
+        border-radius: $border-radius-sm;
+        transition: $transition-fast;
+      }
+      .task-form-high-priority {
+        &:hover,
+        &.active {
+          color: #e66e6e;
+          background-color: #5c3030;
+        }
+      }
+      .task-form-medium-priority {
+        &:hover,
+        &.active {
+          color: #dede67;
+          background-color: #636330;
+        }
+      }
+      .task-form-low-priority {
+        &:hover,
+        &.active {
+          color: #69be69;
+          background-color: #345634;
+        }
+      }
+    }
+    .task-submit-btn {
+      @include actionBtn(10px 14px);
+      width: 100%;
+      transition: $transition-fast;
+      font-size: $font-size-md;
+      &:disabled {
+        cursor: default;
+        color: $color-disabled;
+      }
+      &:not(:disabled) {
+        color: $color-text-white;
+        background-color: $color-btn-bg-grey;
+        &:hover {
+          transform: scale(1.025);
+          background-color: $color-btn-bg-light-grey;
+        }
+      }
+    }
+  }
+}
+
+.tasks-wrapper {
+  @include flex(row, space-between, center);
+  margin-bottom: 20px;
+  .tasks-container {
+    height: 100vh;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: $color-bg;
+    border-radius: $border-radius-md;
+    box-shadow: $box-shadow-spread;
+    .tasks-toolbar {
+      @include flex(row, space-between, center);
+      .tasks-toolbar-item {
+        @include flex(row, flex-start, center);
+        gap: $flex-gap-sm;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        .toolbar-task-btn {
+          @include actionBtn(14px);
+          @include flex(row, flex-start, center);
+          gap: $flex-gap-sm;
+          color: $color-text-white;
+          background: $color-btn-bg-grey;
+          transition: $transition-fast;
+          &:hover {
+            background-color: $color-btn-bg-light-grey;
+          }
+        }
+      }
+    }
+    .tasks-content {
+      height: 80vh;
+      overflow-y: auto;
+      box-shadow: $box-shadow-top;
+      table {
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+        tr {
+          &:hover td {
+            background-color: $color-btn-bg-grey;
+          }
+        }
+        th div {
+          @include flex(row, center, center);
+          gap: $flex-gap-md;
+        }
+        th,
+        td {
+          transition: $transition-fast;
+          padding: 20px;
+        }
+        td {
+          max-width: 150px;
+          border-top: 1px solid $color-border;
+          border-bottom: 1px solid $color-border;
+          background-color: $color-bg-page;
+          &:first-child {
+            border-left: none;
+          }
+          &:last-child {
+            border-right: none;
+          }
+        }
+        .estimation-td,
+        .priority-td,
+        .status-td {
+          text-align: center;
+        }
+        .task-status {
+          @include flex(row, center, center);
+          gap: $flex-gap-sm;
+          .task-status-btn {
+            @include actionBtn(0px);
+            font-size: $font-size-xlg;
+            color: $color-text-white;
+            transition: $transition-slow;
+            &:hover {
+              transform: scale(1.2);
+            }
+            &.finished {
+              color: #00ff00;
+            }
+          }
+        }
+        .task-action-btns {
+          @include flex(row, flex-end, center);
+          gap: $flex-gap-sm;
+          button {
+            @include actionBtn(10px 13px);
+            color: $color-text-white;
+            transition: $transition-fast;
+            &:hover {
+              background-color: $color-btn-bg-light-grey;
+            }
+          }
+          .task-delete-btn {
+            transition: $transition-slow;
+            color: $color-text-danger;
+            background-color: $color-btn-bg-dark-grey;
+            &:hover {
+              background-color: $color-bg-danger;
+            }
+          }
+          .pi-pencil,
+          .pi-times,
+          .pi-trash {
+            padding-top: 3px;
+          }
+        }
+        .high-priority {
+          cursor: default;
+          @include flex(row, center, center);
+          gap: $flex-gap-sm;
+          margin: auto;
+          max-width: 100px;
+          padding: 10px;
+          border-radius: $border-radius-sm;
+          color: #e66e6e;
+          background-color: #5c3030;
+        }
+        .medium-priority {
+          cursor: default;
+          @include flex(row, center, center);
+          gap: $flex-gap-sm;
+          margin: auto;
+          max-width: 100px;
+          padding: 10px;
+          border-radius: $border-radius-sm;
+          color: #dede67;
+          background-color: #636330;
+        }
+        .low-priority {
+          cursor: default;
+          @include flex(row, center, center);
+          gap: $flex-gap-sm;
+          margin: auto;
+          max-width: 100px;
+          padding: 10px;
+          border-radius: $border-radius-sm;
+          color: #69be69;
+          background-color: #345634;
+        }
+      }
+    }
+  }
+}

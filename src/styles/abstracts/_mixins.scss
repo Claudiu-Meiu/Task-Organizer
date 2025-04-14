@@ -1,21 +1,17 @@
-@mixin flexCenter($direction) {
+@mixin flex($flex-direction, $justify-content, $align-items) {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: $direction;
+  flex-direction: $flex-direction;
+  justify-content: $justify-content;
+  align-items: $align-items;
 }
 
-@mixin flexSpaceBetween() {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-
-@mixin actionBtnSm() {
+@mixin actionBtn($padding) {
   cursor: pointer;
-  padding: 10px 14px;
-  border-radius: $border-radius-sm;
+  padding: $padding;
+  border-radius: $border-radius-md;
   border: none;
   background: none;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  font-size: $font-size-sm;
 }

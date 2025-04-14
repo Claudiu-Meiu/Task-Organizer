@@ -5,50 +5,52 @@
   display: flex;
   padding: 10px;
   padding-top: 35px;
+  margin-right: 40px;
   height: 100vh;
   width: 0%;
   border: none;
-  font-size: $font-size-lg;
+  font-size: $font-size-md;
   color: $color-text-white;
   background-color: $color-bg;
-  box-shadow: $box-shadow-h;
+  box-shadow: $box-shadow-right;
   transition: $transition-fast;
   &:hover {
     cursor: pointer;
-    background-color: $color-btn-bg-hover-grey;
+    background-color: $color-btn-bg-light-grey;
   }
 }
 .sidebar {
   float: left;
   height: 100vh;
   width: 22%;
+  margin-right: 40px;
   background-color: $color-bg;
-  box-shadow: $box-shadow-h;
+  box-shadow: $box-shadow-right;
   .header {
-    @include flexSpaceBetween();
+    @include flex(row, space-between, center);
     padding: 10px;
-    box-shadow: $box-shadow-v;
+    box-shadow: $box-shadow-bottom;
     .sidebar-close-btn {
       padding: 20px;
       border-radius: $border-radius-sm;
-      font-size: $font-size-lg;
+      font-size: $font-size-md;
       border: none;
       color: $color-text-white;
       background: none;
       transition: $transition-fast;
       &:hover {
         cursor: pointer;
-        background-color: $color-btn-bg-hover-grey;
+        background-color: $color-btn-bg-dark-grey;
       }
       .pi-angle-double-left {
         padding-top: 5px;
       }
     }
-    .icon {
+    .logo {
       padding: 10px;
-      border-radius: $border-radius-sm;
-      color: $color-text-cyan;
-      background-color: $color-btn-bg-active;
+      border-radius: $border-radius-md;
+      color: $color-text-black;
+      background-color: $color-btn-bg-white;
     }
   }
 }
@@ -61,42 +63,40 @@
     .sidebar-item {
       padding: 10px;
       .add-board-btn {
-        @include flexCenter(row);
+        @include flex(row, center, center);
         gap: $flex-gap-sm;
         padding: 14px;
         border-radius: $border-radius-sm;
         border: none;
         color: $color-text-white;
-        background: none;
-        box-shadow: $box-shadow-spread;
+        background-color: $color-btn-bg-grey;
         width: 100%;
         transition: $transition-fast;
         &:hover {
           cursor: pointer;
-          background-color: $color-btn-bg-hover-grey;
+          background-color: $color-btn-bg-light-grey;
         }
       }
       .add-board-form-content {
-        @include flexSpaceBetween();
+        @include flex(row, space-between, center);
         gap: $flex-gap-sm;
         padding: 11px;
         border-radius: $border-radius-sm;
         text-decoration: none;
         color: $color-text-white;
-        background-color: $color-btn-bg;
+        background-color: $color-btn-bg-grey;
         input {
           width: 100%;
-          padding: 10px;
-          border-radius: $border-radius-sm;
+          padding: 12.4px;
           border: none;
           color: $color-text-white;
           background: none;
         }
         .add-board-form-btns {
-          @include flexCenter(row);
+          @include flex(row, center, center);
           gap: $flex-gap-sm;
           button {
-            @include actionBtnSm();
+            @include actionBtn(10px 13px);
             color: $color-text-white;
           }
           .confirm-add-btn {
@@ -109,8 +109,8 @@
               color: $color-disabled;
             }
             &:not(:disabled):hover {
-              color: $color-text-cyan;
-              background-color: $color-btn-bg-hover;
+              color: $color-text-white;
+              background-color: $color-btn-bg-light-grey;
             }
           }
           .close-add-btn {
@@ -119,8 +119,8 @@
               padding-top: 3px;
             }
             &:hover {
-              background-color: $color-bg-danger;
-              color: $color-text-danger;
+              background-color: $color-btn-bg-light-grey;
+              color: $color-text-white;
             }
           }
         }

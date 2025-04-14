@@ -4,102 +4,109 @@
   display: flex;
   .board-btn {
     flex-grow: 1;
-    @include flexSpaceBetween();
+    @include flex(row, space-between, center);
     padding: 10px;
     border-radius: $border-radius-sm;
     text-decoration: none;
-    font-size: $font-size-sm;
+    font-size: $font-size-md;
     color: $color-text-white;
-    background-color: $color-btn-bg;
+    background-color: $color-btn-bg-grey;
     transition: $transition-fast;
     &:hover {
       cursor: pointer;
-      color: $color-text-cyan;
-      background-color: $color-btn-bg-hover;
+      background-color: $color-btn-bg-light-grey;
       .pi-ellipsis-h {
-        color: $color-text-cyan;
+        color: $color-text-white;
       }
     }
     &.active {
-      color: $color-text-cyan;
-      background-color: $color-btn-bg-active;
-      .pi-ellipsis-h {
-        color: $color-text-cyan;
-      }
+      background-color: $color-btn-bg-light-grey;
     }
     &.board-btn-active-action {
       border-top-right-radius: 0px;
       border-bottom-right-radius: 0px;
     }
     .board-btn-action-btn {
-      @include actionBtnSm();
+      @include actionBtn(10px 13px);
       color: $color-text-white;
       transition: $transition-fast;
       .pi-ellipsis-h {
         padding-top: 4px;
       }
       &:hover {
-        background-color: $color-btn-bg-hover;
+        background-color: $color-btn-bg-grey;
+        .pi-ellipsis-h {
+          color: $color-text-white;
+        }
       }
     }
   }
-
   .action-btns-wrapper {
-    @include flexSpaceBetween();
+    @include flex(row, space-between, center);
     gap: $flex-gap-sm;
-    padding: 10px;
     border-radius: $border-radius-sm;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
-    background-color: $color-btn-bg-active;
+    background-color: $color-btn-bg-light-grey;
     .edit-board {
-      @include actionBtnSm();
-      color: $color-text-cyan;
+      @include actionBtn(10px 13px);
+      color: $color-text-white;
       transition: $transition-fast;
     }
     .delete-board {
-      @include actionBtnSm();
-      color: $color-text-cyan;
+      @include actionBtn(10px 13px);
+      color: $color-text-white;
       transition: $transition-slow;
     }
-    .pi-pen-to-square,
-    .pi-trash {
+    .confirm-board-deletion {
+      @include actionBtn(10px 13px);
+      transition: $transition-slow;
+      color: $color-text-danger;
+      background-color: $color-btn-bg-grey;
+      &:hover {
+        background-color: $color-bg-danger;
+      }
+    }
+    .cancel-board-deletion {
+      @include actionBtn(10px 13px);
+      color: $color-text-white;
+      transition: $transition-fast;
+    }
+    .edit-board,
+    .delete-board,
+    .cancel-board-deletion {
+      &:hover {
+        background-color: $color-btn-bg-grey;
+      }
+    }
+    .pi-pencil,
+    .pi-trash,
+    .pi-times {
       padding-top: 3px;
     }
-    .edit-board:hover {
-      background-color: $color-btn-bg-active;
-    }
-    .delete-board:hover {
-      color: $color-text-danger;
-      background-color: $color-bg-danger;
-    }
   }
-
   .edit-board-wrapper {
     width: 100%;
     .edit-board-form-content {
-      @include flexSpaceBetween();
+      @include flex(row, space-between, center);
       gap: $flex-gap-sm;
       border-radius: $border-radius-sm;
       padding: 10px;
       text-decoration: none;
-      color: $color-text-cyan;
-      background-color: $color-btn-bg-active;
+      background-color: $color-btn-bg-light-grey;
       input {
         width: 100%;
-        padding: 12px;
-        border-radius: $border-radius-sm;
+        padding: 12.4px;
         border: none;
-        color: $color-text-cyan;
-        background: none;
+        color: $color-text-white;
+        background: $color-btn-bg-grey;
       }
       .edit-board-form-btns {
-        @include flexCenter(row);
+        @include flex(row, center, center);
         gap: $flex-gap-sm;
         button {
-          @include actionBtnSm();
-          color: $color-text-cyan;
-          border-radius: $border-radius-sm;
+          @include actionBtn(10px 13px);
+          color: $color-text-white;
         }
         .confirm-edit-btn {
           transition: $transition-fast;
@@ -111,7 +118,7 @@
             color: $color-disabled;
           }
           &:not(:disabled):hover {
-            background-color: $color-btn-bg-hover;
+            background-color: $color-btn-bg-grey;
           }
         }
         .close-edit-btn {
@@ -120,44 +127,10 @@
             padding-top: 3px;
           }
           &:hover {
-            color: $color-text-danger;
-            background-color: $color-bg-danger;
+            color: $color-text-white;
+            background-color: $color-btn-bg-grey;
           }
         }
-      }
-    }
-  }
-
-  .delete-board-wrapper {
-    flex-grow: 1;
-    @include flexSpaceBetween();
-    padding: 10.5px;
-    border-radius: $border-radius-sm;
-    font-size: $font-size-sm;
-    color: $color-text-danger;
-    background-color: $color-bg-danger;
-    .deletion-action-btns-wrapper {
-      @include flexCenter(row);
-      gap: $flex-gap-sm;
-      button {
-        @include actionBtnSm();
-        color: $color-text-danger;
-      }
-      .confirm-board-deletion {
-        transition: $transition-slow;
-        &:hover {
-          background-color: $color-bg-danger;
-        }
-      }
-      .cancel-board-deletion {
-        transition: $transition-fast;
-        &:hover {
-          background-color: $color-btn-bg-hover-grey;
-        }
-      }
-      .pi-check,
-      .pi-times {
-        padding-top: 3px;
       }
     }
   }
