@@ -33,7 +33,7 @@ export class BoardBtnComponent implements OnInit, AfterViewChecked {
   @ViewChild('deleteWrapper', { static: false }) deleteWrapper!: ElementRef;
 
   boardService = inject(BoardService);
-  router: Router = inject(Router);
+  router = inject(Router);
 
   buttonStates = {
     isBoardBtnActionClicked: false,

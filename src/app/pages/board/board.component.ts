@@ -14,8 +14,8 @@ import { BoardService } from '../../services/board.service';
   styleUrl: './board.component.scss',
 })
 export class BoardComponent implements OnInit {
-  router: Router = inject(Router);
-  route: ActivatedRoute = inject(ActivatedRoute);
+  router = inject(Router);
+  route = inject(ActivatedRoute);
   boardService = inject(BoardService);
 
   boardId!: number;
